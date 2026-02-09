@@ -10,7 +10,7 @@ hasCJKLanguage = true          # 中文摘要支持
 
 # 固定链接格式（可选）
 [permalinks]
-  posts = "/posts/:year/:month/:slug/"
+  posts = "/posts/:slug.html"
 
 # Hugo 原生分页
 [pagination]

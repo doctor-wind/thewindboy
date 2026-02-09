@@ -1,4 +1,4 @@
-baseURL      = "https://doctor-wind.github.io/larkchan.github.io/"   # 改成你的域名，必须以 / 结尾
+baseURL      = "https://thekarchan.github.io/thewindboy/"   # 改成你的域名，必须以 / 结尾
 title        = "The Garden of Ants"
 theme        = "typo"
 languageCode = "en-us"
@@ -103,7 +103,7 @@ mainSections = ["posts"]
 # ---  Google Analytics (GA4) ---
 [params.giscus]
   enable = true
-  repo    = "doctor-wind/larkchan.github.io"
+  repo    = "thekarchan/thewindboy"
   repoid  = "R_kgDOO2779Q"
   category = "General"
   categoryid = ""

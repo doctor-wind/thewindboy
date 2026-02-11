@@ -1,8 +1,8 @@
 <script src="https://giscus.app/client.js"
         data-repo="{{ .Site.Params.giscus.repo }}"
-        data-repo-id="{{ .Site.Params.giscus.repoid }}"
-        data-category="{{ .Site.Params.giscus.category }}"
-        data-category-id="{{ .Site.Params.giscus.categoryid }}"
+        {{ with .Site.Params.giscus.repoid }}data-repo-id="{{ . }}"{{ end }}
+        {{ with .Site.Params.giscus.category }}data-category="{{ . }}"{{ end }}
+        {{ with .Site.Params.giscus.categoryid }}data-category-id="{{ . }}"{{ end }}
         data-mapping="{{ .Site.Params.giscus.mapping }}"
         data-strict="0"
         data-reactions-enabled="1"

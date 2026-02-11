@@ -4,10 +4,13 @@
 {{/* Head start hook */}}
 {{ partial "functions/get_hook.html" (dict "hook" "head_start" "context" .) }}
 
-{{ $treeIcon := "favicon.svg?v=tree-20260210" | relURL }}
-<link rel="icon" type="image/svg+xml" href="{{ $treeIcon }}">
-<link rel="shortcut icon" href="{{ $treeIcon }}">
-<link rel="apple-touch-icon" href="{{ $treeIcon }}">
+{{ $iconVersion := "tree-20260211-1" }}
+<link rel="icon" href="{{ "favicon.ico" | relURL }}?v={{ $iconVersion }}" sizes="any">
+<link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}?v={{ $iconVersion }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}?v={{ $iconVersion }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}?v={{ $iconVersion }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}?v={{ $iconVersion }}">
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}?v={{ $iconVersion }}">
 
 {{ with .OutputFormats.Get "rss" -}}
 {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}

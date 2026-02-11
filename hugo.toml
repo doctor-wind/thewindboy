@@ -108,7 +108,7 @@ mainSections = ["posts"]
 [params.giscus]
   enable = true
   repo    = "thekarchan/thewindboy"
-  repoid  = "R_kgDOO2779Q"
+  repoid  = "R_kgDORL52rw"
   category = "General"
   categoryid = ""
   mapping = "pathname"

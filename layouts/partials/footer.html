@@ -2,17 +2,19 @@
 {{ if $showFooter }}
     {{ partial "functions/get_hook.html" (dict "hook" "footer_start" "context" .) }}
 
-    {{ partial "badge-links.html" . }}
+    <div class="site-footer-row">
+        {{ partial "badge-links.html" . }}
 
-    {{ if not .Site.Params.footerContent }}
-    <p>Powered by
-        <a href="https://gohugo.io/">Hugo</a>
-        and
-        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
-    </p>
-    {{ end }}
+        {{ if not .Site.Params.footerContent }}
+        <p>Powered by
+            <a href="https://gohugo.io/">Hugo</a>
+            and
+            <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+        </p>
+        {{ end }}
 
-    {{ with .Site.Params.footerContent }}
-    <p>{{ . | markdownify }}</p>
-    {{ end }}
+        {{ with .Site.Params.footerContent }}
+        <p>{{ . | markdownify }}</p>
+        {{ end }}
+    </div>
 {{ end }}

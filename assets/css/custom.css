@@ -50,7 +50,7 @@ main h2 a { font-weight: 700 !important; }
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="197" height="56" viewBox="0 0 197 56" role="img" aria-labelledby="notByAiTitle">
+  <title id="notByAiTitle">Written by human, not by AI</title>
+  <rect x="0.5" y="0.5" width="196" height="55" rx="9" fill="#4a4746" stroke="#5d5a58"/>
+  <circle cx="23" cy="28" r="13" fill="none" stroke="#f3efe9" stroke-width="2"/>
+  <circle cx="19" cy="24.5" r="1.7" fill="#f3efe9"/>
+  <circle cx="27" cy="24.5" r="1.7" fill="#f3efe9"/>
+  <path d="M18.5 31.5c1.5 2.2 3.1 3.2 4.5 3.2s3-.9 4.5-3.2" fill="none" stroke="#f3efe9" stroke-linecap="round" stroke-width="2"/>
+  <text x="46" y="21" fill="#f3efe9" font-family="Arial, sans-serif" font-size="9.5">written by human</text>
+  <text x="46" y="40" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" font-weight="700">not by AI</text>
+</svg>

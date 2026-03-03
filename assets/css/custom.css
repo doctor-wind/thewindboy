@@ -46,3 +46,37 @@ main h2 a { font-weight: 700 !important; }
   fill: currentColor;
 }
 
+.site-badge-links {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin: 1.75rem auto 1rem;
+}
+
+.site-badge-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-badge-link img {
+  display: block;
+  width: auto;
+  height: 56px;
+  max-width: 100%;
+}
+
+.site-badge-link span {
+  font-size: 0.95rem;
+}
+
+.site-badge-link:hover span,
+.site-badge-link:focus-visible span {
+  text-decoration: underline;
+}
+

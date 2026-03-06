@@ -160,3 +160,37 @@ body {
   color: #047857 !important;
   font-weight: 700 !important;
 }
+
+
+/* Local pagination for post list */
+.decap-local-pager {
+  width: 100%;
+  max-width: 760px;
+  margin: 8px 0 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.decap-local-pager button {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.decap-local-pager button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.decap-local-pager [data-role="info"] {
+  color: #4b5563;
+  font-size: 13px;
+  min-width: 86px;
+  text-align: center;
+}

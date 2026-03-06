@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <title>Decap CMS</title>
-    <link rel="stylesheet" href="custom.css?v=20260306-5" />
+    <link rel="stylesheet" href="custom.css?v=20260306-6" />
   </head>
   <body>
     <script>
@@ -14,6 +14,95 @@
         const SORT_STORAGE_KEY = 'decap-cms.entries.sort';
         const VIEW_STYLE_KEY = 'decap-cms.entries.viewStyle';
         const VIEW_STYLE_LIST = 'VIEW_STYLE_LIST';
+        const ENTRY_PAGE_SIZE = 12;
+        const PAGER_ID = 'decap-local-pager';
+        let currentEntryPage = 1;
+
+        const onPostsCollectionPage = () => /#\/collections\/posts/.test(window.location.hash);
+
+        const getEntryList = () => {
+          const lists = Array.from(document.querySelectorAll('ul'));
+          return lists.find(list => list.querySelector('a[href*="/collections/posts/entries/"]'));
+        };
+
+        const getEntryRows = list => {
+          return Array.from(list.children).filter(item => {
+            return !!item.querySelector('a[href*="/collections/posts/entries/"]');
+          });
+        };
+
+        const removePager = () => {
+          const pager = document.getElementById(PAGER_ID);
+          if (pager) pager.remove();
+        };
+
+        const renderEntryPager = (list, totalPages) => {
+          let pager = document.getElementById(PAGER_ID);
+
+          if (!pager) {
+            pager = document.createElement('div');
+            pager.id = PAGER_ID;
+            pager.className = 'decap-local-pager';
+            pager.innerHTML = [
+              '<button type="button" data-role="prev">上一页</button>',
+              '<span data-role="info"></span>',
+              '<button type="button" data-role="next">下一页</button>',
+            ].join('');
+
+            list.insertAdjacentElement('afterend', pager);
+
+            pager.querySelector('[data-role="prev"]').addEventListener('click', () => {
+              if (currentEntryPage <= 1) return;
+              currentEntryPage -= 1;
+              paginateEntries();
+            });
+
+            pager.querySelector('[data-role="next"]').addEventListener('click', () => {
+              if (currentEntryPage >= totalPages) return;
+              currentEntryPage += 1;
+              paginateEntries();
+            });
+          }
+
+          const prev = pager.querySelector('[data-role="prev"]');
+          const next = pager.querySelector('[data-role="next"]');
+          const info = pager.querySelector('[data-role="info"]');
+
+          info.textContent = `第 ${currentEntryPage} / ${totalPages} 页`;
+          prev.disabled = currentEntryPage <= 1;
+          next.disabled = currentEntryPage >= totalPages;
+        };
+
+        const paginateEntries = () => {
+          if (!onPostsCollectionPage()) {
+            removePager();
+            return;
+          }
+
+          const list = getEntryList();
+          if (!list) {
+            removePager();
+            return;
+          }
+
+          const rows = getEntryRows(list);
+          const totalPages = Math.max(1, Math.ceil(rows.length / ENTRY_PAGE_SIZE));
+
+          if (currentEntryPage > totalPages) currentEntryPage = totalPages;
+          if (currentEntryPage < 1) currentEntryPage = 1;
+
+          rows.forEach((row, index) => {
+            const page = Math.floor(index / ENTRY_PAGE_SIZE) + 1;
+            row.style.display = page === currentEntryPage ? '' : 'none';
+          });
+
+          if (totalPages <= 1) {
+            removePager();
+            return;
+          }
+
+          renderEntryPager(list, totalPages);
+        };
 
         const enforceCollectionDefaults = () => {
           const raw = localStorage.getItem(SORT_STORAGE_KEY);
@@ -42,7 +131,8 @@
           controls.forEach(control => {
             const text = (control.textContent || '').trim();
             const ariaLabel = (control.getAttribute('aria-label') || '').toLowerCase();
-            const isSortButton = SORT_LABELS.includes(text) || ariaLabel.includes('sort') || ariaLabel.includes('排序');
+            const isSortButton =
+              SORT_LABELS.includes(text) || ariaLabel.includes('sort') || ariaLabel.includes('排序');
             if (!isSortButton) return;
 
             const wrapper = control.closest('div');
@@ -107,10 +197,16 @@
           hideViewStyleControls();
           tidyHeader();
           improvePrimaryButtonContrast();
+          paginateEntries();
         };
 
         const observer = new MutationObserver(applyUiTweaks);
         observer.observe(document.documentElement, { childList: true, subtree: true });
+
+        window.addEventListener('hashchange', () => {
+          currentEntryPage = 1;
+          applyUiTweaks();
+        });
 
         window.addEventListener('load', applyUiTweaks);
         applyUiTweaks();

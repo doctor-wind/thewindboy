@@ -1,0 +1,107 @@
+:root {
+  --bg: #f7f7f4;
+  --surface: #ffffff;
+  --text: #202124;
+  --muted: #6b7280;
+  --line: #e6e8eb;
+  --accent: #111827;
+  --accent-soft: #374151;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+/* Keep global UI flat and minimal */
+* {
+  box-shadow: none !important;
+}
+
+/* Common container surfaces */
+header,
+nav,
+aside,
+main,
+section,
+article,
+[role="navigation"],
+[role="main"],
+[data-slate-editor="true"] {
+  border-color: var(--line) !important;
+}
+
+/* Top bar */
+header,
+[role="banner"] {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* Panels */
+aside,
+main > div,
+section > div,
+article > div {
+  background: var(--surface) !important;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  background: #fff !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Buttons */
+button,
+[role="button"] {
+  border-radius: 8px !important;
+  border: 1px solid var(--line) !important;
+  background: #fff !important;
+  color: var(--accent) !important;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+button:hover,
+[role="button"]:hover {
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+}
+
+/* Primary action buttons usually have inline bg styles, force neutral dark */
+button[class*="Button"],
+button[class*="button"],
+a[class*="Button"],
+a[class*="button"] {
+  font-weight: 600 !important;
+}
+
+/* Lists/cards */
+li,
+[role="listitem"] {
+  border-color: var(--line) !important;
+}
+
+/* Links */
+a {
+  color: var(--accent-soft) !important;
+}
+
+/* Subtle spacing rhythm */
+main,
+section,
+article {
+  gap: 12px;
+}

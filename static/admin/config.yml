@@ -2,6 +2,8 @@ backend:
   name: github
   repo: thekarchan/thewindboy
   branch: source
+  base_url: https://bloger.oneyearmd.workers.dev
+  auth_endpoint: auth
 
 # 如需本地调试可启用（运行 decap-server）
 local_backend: true

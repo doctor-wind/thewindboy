@@ -112,3 +112,51 @@ body {
 #root button[aria-label*="网格"] {
   display: none !important;
 }
+
+
+/* Header menu: simpler, pill-like tabs */
+#nc-root header nav ul,
+#root header nav ul {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#nc-root header nav li,
+#root header nav li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#nc-root header nav li a,
+#nc-root header nav li button,
+#root header nav li a,
+#root header nav li button {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #6b7280 !important;
+  border-radius: 999px !important;
+  padding: 10px 16px !important;
+  line-height: 1.2 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+#nc-root header nav li a:hover,
+#nc-root header nav li button:hover,
+#root header nav li a:hover,
+#root header nav li button:hover {
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+}
+
+#nc-root header nav li a.header-link-active,
+#root header nav li a.header-link-active {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  font-weight: 700 !important;
+}

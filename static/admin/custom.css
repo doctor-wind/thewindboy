@@ -114,12 +114,12 @@ body {
 }
 
 
-/* Header menu: simpler, pill-like tabs */
+/* Header menu: minimalist underline tabs */
 #nc-root header nav ul,
 #root header nav ul {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 14px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -139,28 +139,28 @@ body {
   background: transparent !important;
   box-shadow: none !important;
   color: #6b7280 !important;
-  border-radius: 999px !important;
-  padding: 10px 16px !important;
+  border-radius: 0 !important;
+  padding: 11px 2px 9px !important;
   line-height: 1.2 !important;
   font-size: 15px !important;
   font-weight: 600 !important;
+  border-bottom: 2px solid transparent !important;
 }
 
 #nc-root header nav li a:hover,
 #nc-root header nav li button:hover,
 #root header nav li a:hover,
 #root header nav li button:hover {
-  background: #f3f4f6 !important;
   color: #374151 !important;
+  border-bottom-color: #d1d5db !important;
 }
 
 #nc-root header nav li a.header-link-active,
 #root header nav li a.header-link-active {
-  background: #ecfdf5 !important;
-  color: #047857 !important;
+  color: #111827 !important;
+  border-bottom-color: #111827 !important;
   font-weight: 700 !important;
 }
-
 
 /* Local pagination for post list */
 .decap-local-pager {

@@ -11,6 +11,28 @@
     <script>
       (() => {
         const SORT_LABELS = ['排序', 'Sort by', 'Sort'];
+        const SORT_STORAGE_KEY = 'decap-cms.entries.sort';
+
+        const enforceUpdatedDescSort = () => {
+          const raw = localStorage.getItem(SORT_STORAGE_KEY);
+          let current = {};
+
+          try {
+            current = raw ? JSON.parse(raw) : {};
+          } catch {
+            current = {};
+          }
+
+          current.posts = {
+            commit_date: {
+              key: 'commit_date',
+              direction: 'Descending',
+              index: 0,
+            },
+          };
+
+          localStorage.setItem(SORT_STORAGE_KEY, JSON.stringify(current));
+        };
 
         const hideSortControl = () => {
           const controls = document.querySelectorAll('button, [role="button"]');
@@ -25,6 +47,7 @@
           });
         };
 
+        enforceUpdatedDescSort();
         const observer = new MutationObserver(hideSortControl);
         observer.observe(document.documentElement, { childList: true, subtree: true });
         window.addEventListener('load', hideSortControl);

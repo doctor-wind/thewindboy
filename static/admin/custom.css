@@ -15,7 +15,6 @@ body {
   font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
-/* Scope styles to Decap root to avoid global side effects */
 #nc-root,
 #root {
   color: var(--text);
@@ -78,4 +77,38 @@ body {
 #nc-root [data-slate-editor="true"],
 #root [data-slate-editor="true"] {
   line-height: 1.75;
+}
+
+/* Top nav: remove Content/Media icons */
+#nc-root header nav li svg,
+#root header nav li svg {
+  display: none !important;
+}
+
+/* Hide site address and account avatar on right side */
+#nc-root header a[href*="github.io"],
+#nc-root header a[href*="workers.dev"],
+#root header a[href*="github.io"],
+#root header a[href*="workers.dev"],
+#nc-root header button[aria-label*="account" i],
+#nc-root header button[aria-label*="账户"],
+#root header button[aria-label*="account" i],
+#root header button[aria-label*="账户"] {
+  display: none !important;
+}
+
+/* Hide sort/view controls (kept list mode by script) */
+#nc-root button[aria-label*="sort" i],
+#nc-root button[aria-label*="排序"],
+#root button[aria-label*="sort" i],
+#root button[aria-label*="排序"],
+#nc-root button[aria-label*="list" i],
+#nc-root button[aria-label*="grid" i],
+#nc-root button[aria-label*="列表"],
+#nc-root button[aria-label*="网格"],
+#root button[aria-label*="list" i],
+#root button[aria-label*="grid" i],
+#root button[aria-label*="列表"],
+#root button[aria-label*="网格"] {
+  display: none !important;
 }

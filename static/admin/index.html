@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <title>Decap CMS</title>
-    <link rel="stylesheet" href="custom.css?v=20260306-3" />
+    <link rel="stylesheet" href="custom.css?v=20260306-4" />
   </head>
   <body>
     <script>
       (() => {
         const SORT_LABELS = ['排序', 'Sort by', 'Sort'];
         const SORT_STORAGE_KEY = 'decap-cms.entries.sort';
+        const VIEW_STYLE_KEY = 'decap-cms.entries.viewStyle';
+        const VIEW_STYLE_LIST = 'VIEW_STYLE_LIST';
 
-        const enforceUpdatedDescSort = () => {
+        const enforceCollectionDefaults = () => {
           const raw = localStorage.getItem(SORT_STORAGE_KEY);
           let current = {};
 
@@ -32,25 +34,86 @@
           };
 
           localStorage.setItem(SORT_STORAGE_KEY, JSON.stringify(current));
+          localStorage.setItem(VIEW_STYLE_KEY, VIEW_STYLE_LIST);
         };
 
         const hideSortControl = () => {
           const controls = document.querySelectorAll('button, [role="button"]');
           controls.forEach(control => {
             const text = (control.textContent || '').trim();
-            if (!SORT_LABELS.includes(text)) return;
+            const ariaLabel = (control.getAttribute('aria-label') || '').toLowerCase();
+            const isSortButton = SORT_LABELS.includes(text) || ariaLabel.includes('sort') || ariaLabel.includes('排序');
+            if (!isSortButton) return;
 
             const wrapper = control.closest('div');
             if (!wrapper) return;
-
             wrapper.style.display = 'none';
           });
         };
 
-        enforceUpdatedDescSort();
-        const observer = new MutationObserver(hideSortControl);
+        const hideViewStyleControls = () => {
+          const controls = document.querySelectorAll('button[aria-label]');
+          const markers = ['list', 'grid', '列表', '网格'];
+
+          controls.forEach(control => {
+            const ariaLabel = (control.getAttribute('aria-label') || '').toLowerCase();
+            if (!markers.some(marker => ariaLabel.includes(marker))) return;
+
+            control.style.display = 'none';
+            const parent = control.parentElement;
+            if (parent && parent.querySelectorAll('button').length <= 2) {
+              parent.style.display = 'none';
+            }
+          });
+        };
+
+        const tidyHeader = () => {
+          const header = document.querySelector('header');
+          if (!header) return;
+
+          header.querySelectorAll('nav li svg').forEach(icon => icon.remove());
+
+          header.querySelectorAll('a[href]').forEach(link => {
+            const text = (link.textContent || '').trim();
+            const href = (link.getAttribute('href') || '').trim();
+            if (/github\.io|workers\.dev/i.test(text) || /github\.io|workers\.dev/i.test(href)) {
+              link.style.display = 'none';
+            }
+          });
+
+          header.querySelectorAll('button').forEach(button => {
+            const text = (button.textContent || '').trim();
+            const isAvatarLike = !text && !!button.querySelector('img,svg');
+            if (isAvatarLike) button.style.display = 'none';
+          });
+        };
+
+        const improvePrimaryButtonContrast = () => {
+          const buttons = document.querySelectorAll('button, [role="button"], a');
+          buttons.forEach(button => {
+            const text = (button.textContent || '').replace(/\s+/g, '');
+            if (!text.includes('新建文章')) return;
+
+            button.style.background = '#0f766e';
+            button.style.borderColor = '#0f766e';
+            button.style.color = '#ffffff';
+            button.style.fontWeight = '600';
+          });
+        };
+
+        const applyUiTweaks = () => {
+          enforceCollectionDefaults();
+          hideSortControl();
+          hideViewStyleControls();
+          tidyHeader();
+          improvePrimaryButtonContrast();
+        };
+
+        const observer = new MutationObserver(applyUiTweaks);
         observer.observe(document.documentElement, { childList: true, subtree: true });
-        window.addEventListener('load', hideSortControl);
+
+        window.addEventListener('load', applyUiTweaks);
+        applyUiTweaks();
       })();
     </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>

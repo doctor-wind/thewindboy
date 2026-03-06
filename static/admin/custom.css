@@ -1,107 +1,81 @@
 :root {
-  --bg: #f7f7f4;
+  --bg: #f4f5f7;
   --surface: #ffffff;
-  --text: #202124;
-  --muted: #6b7280;
-  --line: #e6e8eb;
-  --accent: #111827;
-  --accent-soft: #374151;
+  --text: #1f2937;
+  --line: #e5e7eb;
+  --line-strong: #d1d5db;
+  --link: #374151;
 }
 
 html,
 body {
   margin: 0;
-  background: var(--bg) !important;
-  color: var(--text) !important;
+  background: var(--bg);
+  color: var(--text);
   font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
-/* Keep global UI flat and minimal */
-* {
+/* Scope styles to Decap root to avoid global side effects */
+#nc-root,
+#root {
+  color: var(--text);
+}
+
+#nc-root a,
+#root a {
+  color: var(--link);
+}
+
+#nc-root input,
+#nc-root textarea,
+#nc-root select,
+#root input,
+#root textarea,
+#root select {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
 }
 
-/* Common container surfaces */
-header,
-nav,
-aside,
-main,
-section,
-article,
-[role="navigation"],
-[role="main"],
-[data-slate-editor="true"] {
-  border-color: var(--line) !important;
+#nc-root input:focus,
+#nc-root textarea:focus,
+#nc-root select:focus,
+#root input:focus,
+#root textarea:focus,
+#root select:focus {
+  border-color: var(--line-strong) !important;
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.08) !important;
 }
 
-/* Top bar */
-header,
-[role="banner"] {
+#nc-root button,
+#nc-root [role="button"],
+#root button,
+#root [role="button"] {
+  border-radius: 8px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+}
+
+#nc-root header,
+#nc-root [role="banner"],
+#root header,
+#root [role="banner"] {
   background: var(--surface) !important;
   border-bottom: 1px solid var(--line) !important;
 }
 
-/* Panels */
-aside,
-main > div,
-section > div,
-article > div {
-  background: var(--surface) !important;
-}
-
-/* Inputs */
-input,
-textarea,
-select {
-  background: #fff !important;
-  color: var(--text) !important;
-  border: 1px solid var(--line) !important;
-  border-radius: 8px !important;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #9ca3af !important;
-}
-
-/* Buttons */
-button,
-[role="button"] {
-  border-radius: 8px !important;
-  border: 1px solid var(--line) !important;
-  background: #fff !important;
-  color: var(--accent) !important;
-  transition: background 120ms ease, border-color 120ms ease;
-}
-
-button:hover,
-[role="button"]:hover {
-  background: #f3f4f6 !important;
-  border-color: #d1d5db !important;
-}
-
-/* Primary action buttons usually have inline bg styles, force neutral dark */
-button[class*="Button"],
-button[class*="button"],
-a[class*="Button"],
-a[class*="button"] {
-  font-weight: 600 !important;
-}
-
-/* Lists/cards */
-li,
-[role="listitem"] {
+#nc-root aside,
+#nc-root [role="navigation"],
+#nc-root [role="main"],
+#root aside,
+#root [role="navigation"],
+#root [role="main"] {
   border-color: var(--line) !important;
 }
 
-/* Links */
-a {
-  color: var(--accent-soft) !important;
-}
-
-/* Subtle spacing rhythm */
-main,
-section,
-article {
-  gap: 12px;
+#nc-root [data-slate-editor="true"],
+#root [data-slate-editor="true"] {
+  line-height: 1.75;
 }

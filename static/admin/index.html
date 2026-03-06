@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <title>Decap CMS</title>
-    <link rel="stylesheet" href="custom.css?v=20260306-2" />
+    <link rel="stylesheet" href="custom.css?v=20260306-3" />
   </head>
   <body>
+    <script>
+      (() => {
+        const SORT_LABELS = ['排序', 'Sort by', 'Sort'];
+
+        const hideSortControl = () => {
+          const controls = document.querySelectorAll('button, [role="button"]');
+          controls.forEach(control => {
+            const text = (control.textContent || '').trim();
+            if (!SORT_LABELS.includes(text)) return;
+
+            const wrapper = control.closest('div');
+            if (!wrapper) return;
+
+            wrapper.style.display = 'none';
+          });
+        };
+
+        const observer = new MutationObserver(hideSortControl);
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+        window.addEventListener('load', hideSortControl);
+      })();
+    </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>

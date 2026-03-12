@@ -59,9 +59,39 @@ main h2 a { font-weight: 700 !important; }
 }
 
 .site-footer-note {
+  display: inline-flex;
+  align-items: center;
   color: inherit;
   text-decoration: none;
   font-size: 12px;
+}
+
+.site-footer-note--badge {
+  line-height: 1;
+}
+
+.site-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+}
+
+.site-footer-badge-mark {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+}
+
+.site-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .site-footer-note:hover,
@@ -69,3 +99,8 @@ main h2 a { font-weight: 700 !important; }
   text-decoration: underline;
 }
 
+.site-footer-note--badge:hover,
+.site-footer-note--badge:focus-visible {
+  text-decoration: none;
+  opacity: 0.8;
+}

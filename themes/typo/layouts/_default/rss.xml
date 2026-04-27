@@ -22,21 +22,19 @@
         {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
     {{ range $pages }}
-      {{ range $pages }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       <guid>{{ .Permalink }}</guid>
       
-      {{/* 这里的 $footer 使用了平滑波浪线 SVG */}}
-      {{ $footer := printf "<div style='margin-top: 30px; text-align: center;'><svg width='120' height='12' viewBox='0 0 120 12' xmlns='http://www.w3.org/2000/svg' style='fill: none; stroke: #ddd; stroke-width: 2;'><path d='M0,6 C15,0 15,12 30,6 C45,0 45,12 60,6 C75,0 75,12 90,6 C105,0 105,12 120,6' /></svg></div><p style='text-align: right;'><a href='%s' style='color: #A9A9A9; text-decoration: none; font-size: 14px;'>风过留声，花园坐坐? 🍃</a></p>" .Permalink }}
+      {{/* 定义页脚：包含波浪线下划线、指定颜色和文字 */}}
+      {{ $footer := printf "<div style='margin-top: 30px; text-align: right;'><a href='%s' style='color: #A9A9A9; text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #ccc; text-underline-offset: 6px; font-size: 14px;'>回花园逛逛？🍃</a></div>" .Permalink }}
       
+      {{/* 输出全文 + 自定义页脚 */}}
       <description>{{ (print .Content $footer) | html }}</description>
       <content:encoded>{{ (print .Content $footer) | html }}</content:encoded>
     </item>
-    {{ end }}
-
     {{ end }}
   </channel>
 </rss>

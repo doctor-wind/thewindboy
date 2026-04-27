@@ -11,10 +11,10 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date }}</pubDate>
 
-      <!-- 摘要（受 <!--more--> 控制） -->
+      <!-- 摘要 -->
       <description><![CDATA[{{ .Summary }}]]></description>
 
-      <!-- 全文（不受 <!--more--> 影响） -->
+      <!-- 全文 -->
       <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
 
     </item>

@@ -29,7 +29,7 @@
       <guid>{{ .Permalink }}</guid>
       
       {{/* 这里的 $footer 定义了右下角的链接文字和样式 */}}
-      {{ $footer := printf "<br><hr><p style='text-align: right;'><a href='%s'>已阅，花园逛逛🫰🏻</a></p>" .Permalink }}
+      {{ $footer := printf "<br><hr><p style='text-align: right;'><a href='%s'>风过留声，花园坐坐？🫰🏻</a></p>" .Permalink }}
       
       {{/* 在 description 和 content:encoded 中都插入全文 + 后缀 */}}
       <description>{{ (print .Content $footer) | html }}</description>

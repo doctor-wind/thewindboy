@@ -1,0 +1,24 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ .Site.Title }}</title>
+    <link>{{ .Site.BaseURL }}</link>
+    <description>{{ .Site.Params.description }}</description>
+
+    {{- range .Pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date }}</pubDate>
+
+      <!-- 摘要（受 <!--more--> 控制） -->
+      <description><![CDATA[{{ .Summary }}]]></description>
+
+      <!-- 全文（不受 <!--more--> 影响） -->
+      <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
+
+    </item>
+    {{- end }}
+
+  </channel>
+</rss>

@@ -1,6 +1,128 @@
 /* 首页/列表中的文章标题链接加粗 */
 main h2 a { font-weight: 700 !important; }
 
+/* Improve reading rhythm on post pages without touching Hugo/RSS templates. */
+.breadcrumbs,
+.single-intro-container,
+.single-title,
+.single-subsummary {
+  position: static !important;
+  top: auto !important;
+}
+
+.breadcrumbs {
+  margin-bottom: 1rem;
+  row-gap: 0.25rem;
+  line-height: 1.5;
+}
+
+.single-intro-container {
+  margin-top: 1.25rem;
+  margin-bottom: 2.75rem;
+}
+
+.single-title {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.single-subsummary {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.single-date {
+  line-height: 1.6;
+}
+
+.single-content {
+  font-size: 1.03rem;
+}
+
+.single-content p,
+.single-content li,
+.single-content blockquote {
+  line-height: 1.9;
+}
+
+.single-content p {
+  margin-top: 1.15rem;
+  margin-bottom: 1.15rem;
+}
+
+.single-content ul,
+.single-content ol {
+  margin-top: 1.15rem;
+  margin-bottom: 1.4rem;
+}
+
+.single-content li + li {
+  margin-top: 0.45rem;
+}
+
+.single-content h2,
+.single-content h3,
+.single-content h4,
+.single-content h5,
+.single-content h6 {
+  line-height: 1.4;
+}
+
+.post-line {
+  margin-bottom: 1.25rem;
+  column-gap: 0.15rem;
+}
+
+.post-line p {
+  line-height: 1.55;
+}
+
+.line-title {
+  line-height: 1.45;
+}
+
+.line-summary {
+  margin-top: 0.35rem !important;
+  line-height: 1.65 !important;
+}
+
+.line-summary p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.line-summary p + p {
+  margin-top: 0.45rem;
+}
+
+@media screen and (max-width: 640px) {
+  .single-intro-container {
+    margin-bottom: 2.25rem;
+  }
+
+  .single-content {
+    font-size: 1rem;
+  }
+
+  .single-content p,
+  .single-content li,
+  .single-content blockquote {
+    line-height: 1.85;
+  }
+
+  .post-line {
+    margin-bottom: 1.45rem;
+    align-items: flex-start;
+  }
+
+  .line-date {
+    min-width: 6.9rem;
+    max-width: 6.9rem;
+    padding-right: 0.75rem;
+  }
+}
+
 .header-emoji {
   font-size: 1em;
   line-height: 1;

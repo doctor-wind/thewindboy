@@ -101,7 +101,7 @@ mainSections = ["posts"]
 [privacy]
   [privacy.youtube]
     privacyEnhanced = true
-  [privacy.twitter]
+  [privacy.x]
     enableDNT = true
 
 # ---  Google Analytics (GA4) ---

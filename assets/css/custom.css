@@ -2,12 +2,43 @@
 main h2 a { font-weight: 700 !important; }
 
 /* Improve reading rhythm on post pages without touching Hugo/RSS templates. */
-.breadcrumbs,
-.single-intro-container,
-.single-title,
-.single-subsummary {
-  position: static !important;
-  top: auto !important;
+body:has(.single-content) > .content > header,
+.main:has(.single-content) > .breadcrumbs,
+.main:has(.single-content) .single-intro-container {
+  position: sticky;
+  background: var(--background);
+}
+
+body:has(.single-content) > .content > header {
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--code-border);
+}
+
+body:has(.single-content) .header {
+  padding-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+body:has(.single-content) .header-title {
+  font-size: 1.8em;
+  line-height: 1.25;
+}
+
+.main:has(.single-content) > .breadcrumbs {
+  top: 4.4rem;
+  z-index: 25;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--code-border);
+}
+
+.main:has(.single-content) .single-intro-container {
+  top: 7rem;
+  z-index: 20;
+  padding-top: 0.75rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--code-border);
 }
 
 .breadcrumbs {
@@ -97,6 +128,22 @@ main h2 a { font-weight: 700 !important; }
 }
 
 @media screen and (max-width: 640px) {
+  body:has(.single-content) .header {
+    padding-top: 0.6rem;
+  }
+
+  body:has(.single-content) .header-title {
+    font-size: 1.45em;
+  }
+
+  .main:has(.single-content) > .breadcrumbs {
+    top: 3.35rem;
+  }
+
+  .main:has(.single-content) .single-intro-container {
+    top: 5.8rem;
+  }
+
   .single-intro-container {
     margin-bottom: 2.25rem;
   }

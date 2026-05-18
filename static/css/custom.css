@@ -1,19 +1,47 @@
-/* 1. 强制全局所有可点击链接默认继承常规文本颜色（去蓝色），且不显示下划线 */
-a, nav a, header a, .menu a, .blog-posts a, h1 a, h2 a, h3 a, .footer a {
-    color: inherit !important;
-    text-decoration: none !important;
+/* ==========================================================================
+   1. 终极去蓝方案：使用多重组合选择器，精准捕获并强制继承文本原色
+   ========================================================================== */
+html body a,
+html body nav a,
+html body header a,
+html body footer a,
+html body .menu a,
+html body .blog-posts a,
+html body .blog-posts li a,
+html body h1 a,
+html body h2 a,
+html body h3 a {
+    color: inherit !important;          /* 强制继承父级文字颜色（日间深灰/夜间纯白） */
+    text-decoration: none !important;   /* 默认状态下隐藏所有下划线 */
 }
 
-/* 2. 鼠标悬停时：保持颜色不变，仅显示横线 */
-a:hover, nav a:hover, header a:hover, .menu a:hover, .blog-posts a:hover, h1 a:hover, h2 a:hover, h3 a:hover, .footer a:hover {
+/* ==========================================================================
+   2. 鼠标悬停交互：颜色依然保持不变，仅触发常规下划线
+   ========================================================================== */
+html body a:hover,
+html body nav a:hover,
+html body header a:hover,
+html body footer a:hover,
+html body .menu a:hover,
+html body .blog-posts a:hover,
+html body .blog-posts li a:hover,
+html body h1 a:hover,
+html body h2 a:hover,
+html body h3 a:hover {
+    color: inherit !important;
     text-decoration: underline !important;
 }
 
-/* 3. 导航栏当前活动 Tab 状态：加粗 + 底部附带一条自适应颜色的横线 */
-nav a.active, header a.active, .menu a.active,
-nav a[aria-current="page"], header a[aria-current="page"],
-nav a[href*="/tags/bird/"] { 
+/* ==========================================================================
+   3. 顶部导航栏激活状态：当前浏览的 Tab 字体重加粗，且底部附带一条实体横线
+   ========================================================================== */
+html body nav a.active,
+html body header a.active,
+html body nav a[aria-current="page"],
+html body header a[aria-current="page"] {
     font-weight: bold !important;
-    border-bottom: 2px solid currentColor !important;
+    color: inherit !important;
+    border-bottom: 2px solid currentColor !important; /* 横线颜色也会自动随文字变黑/变白 */
     padding-bottom: 2px;
+    text-decoration: none !important;
 }

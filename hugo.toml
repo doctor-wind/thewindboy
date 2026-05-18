@@ -12,12 +12,12 @@ hasCJKLanguage = true
 
 [menu]
   [[menu.main]]
-    name = "Home"
-    url = "/thewindboy/"
+    name = "Parade"
+    url = "/"
     weight = 1
   [[menu.main]]
-    name = "Posts" 
-    url = "/thewindboy/posts/" 
+    name = "Bird" 
+    url = "/posts/" 
     weight = 2
 
 [params]

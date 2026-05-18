@@ -120,3 +120,6 @@ googleAnalytics = "G-09506ENLJ2"
 [services]
   [services.googleAnalytics]
     ID = "G-09506ENLJ2"
+
+[params]
+  mainSections = ["blog"]

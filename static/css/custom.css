@@ -1,0 +1,27 @@
+/* ==========================================================================
+   1. 强制全局所有可点击链接默认继承它的父级文字颜色（彻底干掉高亮蓝），且不显示下划线
+   ========================================================================== */
+a, nav a, header a, footer a, .menu a, .blog-posts a, .blog-posts li a, h1 a, h2 a, h3 a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* ==========================================================================
+   2. 鼠标悬停时：保持文本颜色和周围一致，仅触发常规下划线
+   ========================================================================== */
+a:hover, nav a:hover, header a:hover, footer a:hover, .menu a:hover, .blog-posts a:hover, .blog-posts li a:hover, h1 a:hover, h2 a:hover, h3 a:hover {
+    color: inherit !important;
+    text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   3. 顶部导航栏激活状态：当前浏览的 Tab 字体重加粗，且底部附带一条自适应颜色的横线
+   ========================================================================== */
+nav a.active, header a.active, .menu a.active,
+nav a[aria-current="page"], header a[aria-current="page"] {
+    font-weight: bold !important;
+    color: inherit !important;
+    border-bottom: 2px solid currentColor !important; /* 横线颜色会自动随着白天变黑、黑夜变白 */
+    padding-bottom: 2px;
+    text-decoration: none !important;
+}

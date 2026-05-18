@@ -27,7 +27,7 @@ hasCJKLanguage = true
 [params]
   description = "A Nothing Big Blog"
   author = "Kar Chan"
-  customCSS = ["css/custom.css"]
+  customCSS = ["custom.css"]
   mainSections = ["blog"] 
   listSummaries = true
 

@@ -1,5 +1,5 @@
 baseURL      = "https://thekarchan.github.io/thewindboy/"
-title        = "The Garden of Ants"
+title        = "The Ant's Garden"
 theme        = "hugo-bearblog-master"
 languageCode = "en-us"
 defaultContentLanguage = "en"

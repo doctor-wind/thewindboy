@@ -4,7 +4,7 @@
   <ul class="blog-posts">
     {{ $pages := where .Site.RegularPages "Params.tags" "intersect" (slice "日常") }}
     
-    {{ range .Paginate $pages 10 }}
+    {{ range (.Paginate $pages).Pages }}
       <li style="margin-bottom: 1.5rem;">
         <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
         <div style="display: flex; flex-direction: column; flex-grow: 1;">

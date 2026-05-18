@@ -1,6 +1,7 @@
 baseURL      = "https://thekarchan.github.io/thewindboy/"
 title        = "Kar's Blog"
 paginate     = 10
+customCSS    = ["custom.css"]
 theme        = "hugo-bearblog-master"
 languageCode = "en-us"
 defaultContentLanguage = "en"

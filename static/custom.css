@@ -1,14 +1,21 @@
-/* 针对文章列表标题、以及页面各级大标题的默认状态 */
-.blog-posts a, 
-h1, h2, h3, h1 a, h2 a, h3 a {
-    font-weight: bold !important;      /* 强制加粗 */
-    text-decoration: none !important;  /* 默认隐藏下划线 */
-    color: inherit !important;         /* 继承默认文字颜色，防止变蓝 */
+/* 确保所有导航链接保持主题原生的蓝色，且默认无下划线 */
+nav a, header a, .menu a {
+    color: #2b6cb0 !important;         /* 锁定标准的蓝色 */
+    text-decoration: none !important;  /* 默认去掉下划线 */
+    padding-bottom: 3px;
+    margin-right: 10px;
 }
 
-/* 鼠标悬停时的交互状态 */
-.blog-posts a:hover, 
-h1 a:hover, h2 a:hover, h3 a:hover {
-    text-decoration: underline !important; /* 悬停时显示下划线 */
-    color: inherit !important;             /* 悬停时颜色保持不变 */
+/* 鼠标悬停时显示常规下划线 */
+nav a:hover, header a:hover, .menu a:hover {
+    text-decoration: underline !important;
+}
+
+/* 强制高亮当前正在浏览的页面 Tab 状态：保持蓝色 + 字体加粗 + 底部附带一条实体蓝线 */
+nav a.active, header a.active, .menu a.active,
+nav a[aria-current="page"], header a[aria-current="page"] {
+    font-weight: bold !important;
+    color: #2b6cb0 !important;                    /* 保持蓝色不褪色 */
+    border-bottom: 2px solid #2b6cb0 !important;  /* 底部增加高亮状态横线 */
+    text-decoration: none !important;             /* 移除文本自带的普通下划线 */
 }

@@ -1,0 +1,14 @@
+/* 针对文章列表标题、以及页面各级大标题的默认状态 */
+.blog-posts a, 
+h1, h2, h3, h1 a, h2 a, h3 a {
+    font-weight: bold !important;      /* 强制加粗 */
+    text-decoration: none !important;  /* 默认隐藏下划线 */
+    color: inherit !important;         /* 继承默认文字颜色，防止变蓝 */
+}
+
+/* 鼠标悬停时的交互状态 */
+.blog-posts a:hover, 
+h1 a:hover, h2 a:hover, h3 a:hover {
+    text-decoration: underline !important; /* 悬停时显示下划线 */
+    color: inherit !important;             /* 悬停时颜色保持不变 */
+}

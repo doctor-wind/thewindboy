@@ -23,10 +23,6 @@ hasCJKLanguage = true
     name = "Bird"
     url = "/bird/"
     weight = 2
-  [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
-    weight = 3
 
     
 [params]

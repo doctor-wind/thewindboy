@@ -4,7 +4,8 @@
   <ul class="blog-posts">
     {{ $pages := where .Site.RegularPages "Params.tags" "intersect" (slice "日常") }}
     
-    {{ range (.Paginate $pages).Pages }}
+    {{ $paginator := .Paginate $pages }}
+    {{ range $paginator.Pages }}
       <li style="margin-bottom: 1.5rem;">
         <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
         <div style="display: flex; flex-direction: column; flex-grow: 1;">
@@ -19,5 +20,15 @@
     {{ end }}
   </ul>
 
-  {{ partial "pagination.html" . }}
+  {{ if gt $paginator.TotalPages 1 }}
+    <div style="margin-top: 2rem; display: flex; gap: 15px; font-size: 0.95em;">
+      {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}">← Prev</a>
+      {{ end }}
+      <span style="opacity: 0.6;">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+      {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}">Next →</a>
+      {{ end }}
+    </div>
+  {{ end }}
 {{ end }}

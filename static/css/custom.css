@@ -12,4 +12,5 @@ nav a[aria-current="page"], header a[aria-current="page"] {
     color: inherit !important;
     border-bottom: 2px solid currentColor !important;
     padding-bottom: 2px;
+    text-decoration: none !important;
 }

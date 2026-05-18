@@ -1,6 +1,6 @@
 baseURL      = "https://thekarchan.github.io/thewindboy/"   # 改成你的域名，必须以 / 结尾
 title        = "The Garden of Ants"
-theme        = "typo"
+theme        = "hugo-bearblog-master"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 enableRobotsTXT = true

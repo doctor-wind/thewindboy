@@ -2,9 +2,9 @@
   <h1>{{ .Title }}</h1>
   {{ .Content }}
   <ul class="blog-posts">
-    {{ $pages := where .Site.RegularPages "Params.tags" "intersect" (slice "日常" "好奇心" "生活在2026") }}
+    {{ $pages := where .Site.RegularPages "Params.tags" "intersect" (slice "日常") }}
     
-    {{ range .Paginate $pages }}
+    {{ range .Paginate $pages 10 }}
       <li style="margin-bottom: 1.5rem;">
         <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
         <div style="display: flex; flex-direction: column; flex-grow: 1;">

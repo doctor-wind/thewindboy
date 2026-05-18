@@ -1,4 +1,6 @@
 {{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  
   {{ .Content }}
   <ul class="blog-posts">
     {{ $sevenDaysAgo := now.AddDate 0 0 -7 }}

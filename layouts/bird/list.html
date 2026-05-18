@@ -2,7 +2,7 @@
   <h1>{{ .Title }}</h1>
   {{ .Content }}
   <ul class="blog-posts">
-    {{ range where .Site.RegularPages "Params.tags" "intersect" (slice "飞鸟集") }}
+    {{ range where .Site.RegularPages "Params.tags" "intersect" (slice "飞鸟集" "飞鸟记" "Bird") }}
       <li style="margin-bottom: 1.5rem;">
         <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
         <div style="display: flex; flex-direction: column; flex-grow: 1;">

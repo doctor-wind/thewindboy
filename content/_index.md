@@ -1,5 +1,5 @@
 ---
-title: "The Ant's Garden"
+title: "Kar's Blog"
 ---
 
 <span class="intro-en">This world is as splendid and colorful as a garden; I wander like an ant, and when I pause from time to time, I leave a note on a leaf.</span>

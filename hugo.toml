@@ -17,7 +17,7 @@ hasCJKLanguage = true
     weight = 1
   [[menu.main]]
     name = "Parade"
-    pageRef = "/"
+    pageRef = "/parade"
     weight = 2
   [[menu.main]]
     name = "Bird"

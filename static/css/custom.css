@@ -1,18 +1,19 @@
-/* 1. 强制所有链接（导航、标题、页脚等）默认继承常规文字颜色（不再是蓝色），且无下划线 */
+/* 1. 强制全局所有可点击链接默认继承常规文本颜色（去蓝色），且不显示下划线 */
 a, nav a, header a, .menu a, .blog-posts a, h1 a, h2 a, h3 a, .footer a {
     color: inherit !important;
     text-decoration: none !important;
 }
 
-/* 2. 鼠标悬停时：保持原有颜色，仅显示下划线 */
+/* 2. 鼠标悬停时：保持颜色不变，仅显示横线 */
 a:hover, nav a:hover, header a:hover, .menu a:hover, .blog-posts a:hover, h1 a:hover, h2 a:hover, h3 a:hover, .footer a:hover {
     text-decoration: underline !important;
 }
 
-/* 3. 导航栏“当前选中Tab”的状态：加粗 + 底部横线（自动跟随日间/夜间模式的文字颜色） */
+/* 3. 导航栏当前活动 Tab 状态：加粗 + 底部附带一条自适应颜色的横线 */
 nav a.active, header a.active, .menu a.active,
-nav a[aria-current="page"], header a[aria-current="page"] {
+nav a[aria-current="page"], header a[aria-current="page"],
+nav a[href*="/tags/bird/"] { 
     font-weight: bold !important;
-    border-bottom: 2px solid currentColor !important; /* currentColor 会自动变为当前字体的颜色 */
+    border-bottom: 2px solid currentColor !important;
     padding-bottom: 2px;
 }

@@ -1,7 +1,14 @@
 <footer style="padding-top: 1rem;">
   <hr>
   
-  <div class="my-custom-icons" style="margin-bottom: 1rem; display: flex; gap: 10px; align-items: center;">
+  <style>
+    .my-custom-icons svg, .my-custom-icons img {
+      height: 12px !important; 
+      width: auto !important;
+    }
+  </style>
+  
+  <div class="my-custom-icons" style="margin-bottom: 1rem; display: flex; gap: 10px; align-items: center; justify-content: center;">
     {{ partial "badge-links.html" . }}
   </div>
 

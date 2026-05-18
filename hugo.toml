@@ -7,8 +7,8 @@ enableRobotsTXT = true
 hasCJKLanguage = true
 
 [permalinks]
-  posts = "/posts/:filename/"
-  blog = "/blog/:filename/"
+  posts = "/posts/:contentbasename/"
+  blog = "/blog/:contentbasename/"
 
 [menu]
    [[menu.main]]

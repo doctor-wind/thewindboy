@@ -1,0 +1,7 @@
+{{ $showFooter := default true .Site.Params.showFooter }} {{ if $showFooter }} {{ partial "functions/get_hook.html" (dict "hook" "footer_start" "context" .) }}
+{{ partial "badge-links.html" . }} Â· {{ if .IsPage }} {{ .WordCount }}å­— | {{ end }} {{ if not .Site.Params.footerContent }}
+Powered by Hugo and tomfran/typo
+{{ end }} {{ with .Site.Params.footerContent }}
+{{ . | markdownify }}
+{{ end }}
+{{ end }}

@@ -1,5 +1,6 @@
 baseURL      = "https://thekarchan.github.io/thewindboy/"
 title        = "Kar's Blog"
+paginate     = 10
 theme        = "hugo-bearblog-master"
 languageCode = "en-us"
 defaultContentLanguage = "en"

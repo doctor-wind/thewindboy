@@ -13,23 +13,21 @@ hasCJKLanguage = true
 [menu]
   [[menu.main]]
     name = "Latest"
-    url = "/latest/"
+    pageRef = "/latest"
     weight = 1
   [[menu.main]]
     name = "Parade"
-    url = "/"
+    pageRef = "/"
     weight = 2
   [[menu.main]]
     name = "Bird"
-    url = "/bird/"
+    pageRef = "/bird"
     weight = 3
 
-    
 [params]
   description = "A Nothing Big Blog"
   author = "Kar Chan"
   customCSS = ["css/custom.css"]
-  # 明确文章来源目录。如果你在 content 下的文件夹改为了 blog，请将此处改为 ["blog"]，并将上方菜单的 url 改为 "/thewindboy/blog/"
   mainSections = ["blog"] 
   listSummaries = true
 

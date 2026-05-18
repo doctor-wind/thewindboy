@@ -5,12 +5,14 @@
     {{ range where .Site.RegularPages "Date" ">=" $sevenDaysAgo }}
       <li style="margin-bottom: 1.5rem;">
         <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-        {{ if .Site.Params.listSummaries }}
-          <div style="margin-top: 0.5rem; opacity: 0.8;">
-            {{ .Summary }}
-          </div>
-        {{ end }}
+        <div style="display: flex; flex-direction: column; flex-grow: 1;">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          {{ if .Site.Params.listSummaries }}
+            <span style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.95em; line-height: 1.6; word-break: break-word;">
+              {{ .Summary }}
+            </span>
+          {{ end }}
+        </div>
       </li>
     {{ end }}
   </ul>

@@ -1,7 +1,13 @@
-{{ $showFooter := default true .Site.Params.showFooter }} {{ if $showFooter }} {{ partial "functions/get_hook.html" (dict "hook" "footer_start" "context" .) }}
-{{ partial "badge-links.html" . }} Â· {{ if .IsPage }} {{ .WordCount }}å­— | {{ end }} {{ if not .Site.Params.footerContent }}
-Powered by Hugo and tomfran/typo
-{{ end }} {{ with .Site.Params.footerContent }}
-{{ . | markdownify }}
-{{ end }}
-{{ end }}
+<footer style="padding-top: 1rem;">
+  <hr>
+  
+  <div class="my-custom-icons" style="margin-bottom: 1rem; display: flex; gap: 10px; align-items: center;">
+    {{ partial "badge-links.html" . }}
+  </div>
+
+  <div class="footer">
+    {{- if .Site.Params.author -}}
+      <a class="footer-author" href="{{ .Site.BaseURL }}">{{ .Site.Params.author }}</a> © {{ now.Format "2006" }}
+    {{- end -}}
+  </div>
+</footer>

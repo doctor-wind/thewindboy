@@ -1,10 +1,26 @@
 {{ $currentPage := . }}
+{{ $isLatest := or $currentPage.IsHome (eq $currentPage.Section "latest") }}
+{{ $isParade := false }}
+{{ $isBird := false }}
+
+{{ if $currentPage.IsPage }}
+  {{ if intersect $currentPage.Params.tags (slice "日常") }}
+    {{ $isParade = true }}
+  {{ else if intersect $currentPage.Params.tags (slice "飞鸟集" "飞鸟记" "Bird" "bird") }}
+    {{ $isBird = true }}
+  {{ else }}
+    {{ $isLatest = true }}
+  {{ end }}
+{{ end }}
+
 {{ range .Site.Menus.main }}
   {{ $active := false }}
   {{ if eq .Name "Latest" }}
-    {{ if or $currentPage.IsHome (in $currentPage.RelPermalink .URL) (eq $currentPage.Section "blog") (eq $currentPage.Section "latest") }}
-      {{ $active = true }}
-    {{ end }}
+    {{ if $isLatest }}{{ $active = true }}{{ end }}
+  {{ else if eq .Name "Parade" }}
+    {{ if or $isParade (in $currentPage.RelPermalink .URL) }}{{ $active = true }}{{ end }}
+  {{ else if eq .Name "Bird" }}
+    {{ if or $isBird (in $currentPage.RelPermalink .URL) }}{{ $active = true }}{{ end }}
   {{ else }}
     {{ if in $currentPage.RelPermalink .URL }}
       {{ $active = true }}

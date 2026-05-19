@@ -9,6 +9,19 @@
   }
 }
 
+/* Sticky Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--background-color);
+    padding-top: 20px;
+    margin-top: -20px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed rgba(150, 150, 150, 0.3);
+}
+
 /* Link general styles - no blue, no default underline unless hover */
 a {
     color: var(--text-color) !important;
@@ -20,9 +33,10 @@ a:hover {
 
 /* Footer links text size and style */
 footer {
-    font-size: 12px;
+    font-size: 10px;
 }
 footer a {
+    color: inherit !important;
     text-decoration: none !important;
 }
 footer a:hover {

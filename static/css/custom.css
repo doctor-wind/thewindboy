@@ -92,8 +92,8 @@ content a:hover {
 }
 @media (prefers-color-scheme: dark) {
     .tags span {
-        background-color: #f0f0f0;
-        color: #333;
+        background-color: #555;
+        color: #eee;
     }
 }
 

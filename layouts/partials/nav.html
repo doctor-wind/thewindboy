@@ -1,0 +1,14 @@
+{{ $currentPage := . }}
+{{ range .Site.Menus.main }}
+  {{ $active := false }}
+  {{ if eq .URL "/" }}
+    {{ if $currentPage.IsHome }}
+      {{ $active = true }}
+    {{ end }}
+  {{ else }}
+    {{ if in $currentPage.RelPermalink .URL }}
+      {{ $active = true }}
+    {{ end }}
+  {{ end }}
+  <a href="{{ .URL }}" {{ if $active }}class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
+{{ end }}

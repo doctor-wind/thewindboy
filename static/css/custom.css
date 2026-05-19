@@ -51,10 +51,10 @@ footer a:hover {
 /* Navigation tabs */
 nav a {
     font-weight: bold;
-    text-decoration: underline !important;
+    text-decoration: none !important;
 }
 nav a:hover {
-    text-decoration: none !important;
+    text-decoration: underline !important;
 }
 nav a.active, nav a[aria-current="page"] {
     border-bottom: 2px solid currentColor;

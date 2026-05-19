@@ -9,6 +9,11 @@
   }
 }
 
+/* Body base adjustments */
+body {
+    letter-spacing: 0.03em;
+}
+
 /* Sticky Header */
 header {
     position: sticky;

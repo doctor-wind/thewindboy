@@ -6,17 +6,25 @@
     {{ $pages := where .Site.RegularPages "Date" ">=" $sevenDaysAgo }}
     
     {{ $paginator := .Paginate $pages }}
-    {{ range $paginator.Pages }}
-      <li style="margin-bottom: 1.5rem;">
-        <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
-        <div style="display: flex; flex-direction: column; flex-grow: 1;">
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-          {{ if .Site.Params.listSummaries }}
-            <span style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.95em; line-height: 1.6; word-break: break-word;">
-              {{ .Summary }}
-            </span>
-          {{ end }}
-        </div>
+    {{ if $paginator.Pages }}
+      {{ range $paginator.Pages }}
+        <li style="margin-bottom: 0.8rem;">
+          <span><i><time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format "2006-01-02" }}</time></i></span>
+          <div style="display: flex; flex-direction: column; flex-grow: 1;">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            {{ if .Site.Params.listSummaries }}
+              <span style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.95em; line-height: 1.6; word-break: break-word;">
+                {{ .Summary }}
+              </span>
+            {{ end }}
+          </div>
+        </li>
+      {{ end }}
+    {{ else }}
+      <li style="margin-top: 2rem; display: flex; align-items: center; gap: 10px; font-size: 1.1em;">
+        Kar 大概是被风吹走了
+        <span class="bell-icon" style="cursor: pointer; display: inline-block; font-size: 1.5em; transform-origin: top center;" onmouseenter="document.getElementById('chime-audio').play(); this.classList.add('swinging')" onanimationend="this.classList.remove('swinging')">🎐</span>
+        <audio id="chime-audio" src="data:audio/mp3;base64,//NExAAAAANIAUAAABVAB1JgGgAAwABQv/3yEAgA/5f/8/8wIeAAAAAHjQGDAAAAAD//NExIAAAANIAUAAABVAB1JgGgAAwABQv/3yEAgA/5f/8/8wIeAAAAAHjQGDAAAAAD" preload="auto"></audio>
       </li>
     {{ end }}
   </ul>

@@ -1,16 +1,92 @@
-a, nav a, header a, footer a, .menu a, .blog-posts a, .blog-posts li a, h1 a, h2 a, h3 a {
-    color: inherit !important;
+/* Color scheme adjustments */
+:root {
+  --background-color: #fafafa;
+  --link-color: inherit;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #3e3e3e;
+  }
+}
+
+/* Link general styles - no blue, no default underline unless hover */
+a {
+    color: var(--text-color) !important;
     text-decoration: none !important;
 }
-a:hover, nav a:hover, header a:hover, footer a:hover, .menu a:hover, .blog-posts a:hover, .blog-posts li a:hover, h1 a:hover, h2 a:hover, h3 a:hover {
-    color: inherit !important;
+a:hover {
     text-decoration: underline !important;
 }
-nav a.active, header a.active, .menu a.active,
-nav a[aria-current="page"], header a[aria-current="page"] {
-    font-weight: bold !important;
-    color: inherit !important;
-    border-bottom: 2px solid currentColor !important;
-    padding-bottom: 2px;
+
+/* Footer links text size and style */
+footer {
+    font-size: 12px;
+}
+footer a {
     text-decoration: none !important;
+}
+footer a:hover {
+    text-decoration: underline !important;
+}
+
+/* Navigation tabs */
+nav a {
+    font-weight: bold;
+    text-decoration: underline !important;
+}
+nav a:hover {
+    text-decoration: none !important;
+}
+nav a.active, nav a[aria-current="page"] {
+    border-bottom: 2px solid currentColor;
+}
+
+/* Blog list titles */
+.blog-posts a {
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+/* Article spacing */
+content p {
+    line-height: 1.8;
+    margin-bottom: 1.5em;
+}
+
+/* Article links should have underline */
+content a {
+    text-decoration: underline !important;
+}
+content a:hover {
+    text-decoration: none !important;
+}
+
+/* Tags styles */
+.tags a {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    text-decoration: none !important;
+}
+.tags a:hover {
+    opacity: 0.8;
+}
+@media (prefers-color-scheme: dark) {
+    .tags a {
+        background-color: #666;
+    }
+}
+
+/* Bell swing animation */
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+.swinging {
+    animation: swing 0.8s ease-in-out;
 }

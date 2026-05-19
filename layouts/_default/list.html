@@ -1,0 +1,51 @@
+{{ define "main" }}
+<content>
+  {{ if .Data.Singular }}
+  <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
+  <small>
+    <a href="{{ "blog" | relURL }}">Remove filter</a>
+  </small>
+  {{ end }}
+  <ul class="blog-posts">
+    {{ $paginator := .Paginate .Pages }}
+    {{ range $paginator.Pages }}
+    <li style="margin-bottom: 0.8rem;">
+      <span>
+        <i>
+          <time datetime='{{ .Date.Format "2006-01-02" }}'>
+            {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+          </time>
+        </i>
+      </span>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </li>
+    {{ else }}
+    <li>
+      No posts yet
+    </li>
+    {{ end }}
+  </ul>
+
+  {{ if gt $paginator.TotalPages 1 }}
+    <div style="margin-top: 2rem; display: flex; gap: 15px; font-size: 0.95em;">
+      {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}">← Prev</a>
+      {{ end }}
+      <span style="opacity: 0.6;">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+      {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}">Next →</a>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  {{ if not .Data.Singular }}
+  <small>
+    <div class="tags" style="margin-top: 2rem;">
+      {{ range .Site.Taxonomies.tags }}
+      <a href="{{ .Page.Permalink }}" style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">#{{ .Page.Title }}</a>
+      {{ end }}
+    </div>
+  </small>
+  {{ end }}
+</content>
+{{ end }}

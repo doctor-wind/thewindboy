@@ -1,8 +1,8 @@
 {{ $currentPage := . }}
 {{ range .Site.Menus.main }}
   {{ $active := false }}
-  {{ if eq .URL "/" }}
-    {{ if or $currentPage.IsHome (eq $currentPage.Section "blog") (eq $currentPage.Section "latest") }}
+  {{ if eq .Name "Latest" }}
+    {{ if or $currentPage.IsHome (in $currentPage.RelPermalink .URL) (eq $currentPage.Section "blog") (eq $currentPage.Section "latest") }}
       {{ $active = true }}
     {{ end }}
   {{ else }}

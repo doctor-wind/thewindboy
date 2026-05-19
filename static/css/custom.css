@@ -57,7 +57,7 @@ nav a:hover {
     text-decoration: underline !important;
 }
 nav a.active, nav a[aria-current="page"] {
-    border-bottom: 2px solid currentColor;
+    text-decoration: underline !important;
 }
 
 /* Blog list titles */

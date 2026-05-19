@@ -27,7 +27,7 @@
   </ul>
 
   {{ if gt $paginator.TotalPages 1 }}
-    <div style="margin-top: 2rem; display: flex; gap: 15px; font-size: 0.95em;">
+    <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 15px; font-size: 0.95em;">
       {{ if $paginator.HasPrev }}
         <a href="{{ $paginator.Prev.URL }}">← Prev</a>
       {{ end }}

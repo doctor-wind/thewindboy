@@ -72,9 +72,10 @@ content p {
     margin-bottom: 1.5em;
 }
 
-/* Article links should have underline */
+/* Article links should have underline and italic */
 content a {
     text-decoration: none !important;
+    font-style: italic;
 }
 content a:hover {
     text-decoration: underline !important;

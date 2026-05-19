@@ -1,20 +1,8 @@
 <footer style="padding-top: 1rem;">
   <hr>
   
-  <style>
-    .my-custom-icons svg, .my-custom-icons img {
-      height: 14px !important; 
-      width: auto !important;
-    }
-  </style>
-  
-  <div class="my-custom-icons" style="margin-bottom: 0.5rem; display: flex; gap: 15px; align-items: center; justify-content: center;">
-    <a href="{{ "index.xml" | relURL }}" target="_blank">RSS</a>
-  </div>
-
-  <div class="my-custom-icons" style="margin-bottom: 1rem; display: flex; gap: 10px; align-items: center; justify-content: center;">
-    {{ partial "badge-links.html" . }}
-  </div>
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans"> <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-nd.svg" width="88" height="31" alt="CC BY-NC-ND"> 承诺非AI创作</a>
+  <br><br>
 
   <div class="footer">
     {{- if .Site.Params.author -}}

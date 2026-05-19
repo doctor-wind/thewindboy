@@ -1,6 +1,7 @@
 <a href="{{ "" | relURL }}" class="title">
   <h2>{{ .Site.Title }}</h2>
 </a>
+{{ if not .IsPage }}
 <p style="font-family: 'Snell Roundhand', 'Apple Chancery', 'Caveat', 'Monotype Corsiva', 'Kaiti SC', 'STKaiti', 'KaiTi', '楷体', cursive, serif; font-style: italic; font-weight: 300; font-size: 1.05em; opacity: 0.85; margin-top: -10px; margin-bottom: 10px; line-height: 1.6; letter-spacing: 0.5px;">
   This world is as splendid and colorful as a garden; I wander like an ant, and when I pause from time to time, I leave a note on a leaf. 这个世界就是花园一样绚烂多彩，我如蚂蚁般逛逛，偶尔停下来的时候，在树叶上做个记录。
 </p>
@@ -10,3 +11,4 @@
   <a href="https://broadcast-17n.pages.dev" target="_blank" rel="noopener">Telegram Post</a>
 </div>
 <nav>{{- partial "nav.html" . -}}</nav>
+{{ end }}

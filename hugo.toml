@@ -5,7 +5,15 @@ languageCode = "en-us"
 defaultContentLanguage = "en"
 enableRobotsTXT = true
 hasCJKLanguage = true
-paginate     = 10
+
+[pagination]
+  pagerSize = 10
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 
 [permalinks]
   posts = "/posts/:contentbasename/"

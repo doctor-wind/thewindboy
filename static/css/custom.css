@@ -69,10 +69,10 @@ content p {
 
 /* Article links should have underline */
 content a {
-    text-decoration: underline !important;
+    text-decoration: none !important;
 }
 content a:hover {
-    text-decoration: none !important;
+    text-decoration: underline !important;
 }
 
 /* Tags styles */

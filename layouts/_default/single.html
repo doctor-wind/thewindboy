@@ -21,12 +21,12 @@
 
 {{ if eq .Type "blog" }}
 <div class="post-navigation" style="margin-top: 3rem; display: flex; justify-content: space-between; border-top: 1px dashed #ccc; padding-top: 1.5rem;">
-  <div style="flex: 1; padding-right: 1rem;">
+  <div style="flex: 1; padding-left: 2em; padding-right: 1rem;">
     {{ if .NextInSection }}
       <a href="{{ .NextInSection.Permalink }}" style="text-decoration: none !important;">← {{ .NextInSection.Title }}</a>
     {{ end }}
   </div>
-  <div style="flex: 1; text-align: right; padding-left: 1rem;">
+  <div style="flex: 1; text-align: right; padding-right: 2em; padding-left: 1rem;">
     {{ if .PrevInSection }}
       <a href="{{ .PrevInSection.Permalink }}" style="text-decoration: none !important;">{{ .PrevInSection.Title }} →</a>
     {{ end }}

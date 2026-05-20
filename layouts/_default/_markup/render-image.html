@@ -1,0 +1,17 @@
+{{- $url := urls.Parse .Destination -}}
+{{- if $url.IsAbs -}}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title }}title="{{ . }}"{{ end }} loading="lazy" style="max-width: 100%; height: auto;" />
+{{- else -}}
+  {{- $img := .Page.Resources.GetMatch .Destination -}}
+  {{- if and $img (not (strings.HasSuffix .Destination ".svg")) (not (strings.HasSuffix .Destination ".gif")) -}}
+    {{- $optimized := $img -}}
+    {{- if gt $img.Width 1200 -}}
+      {{- $optimized = $img.Resize "1200x webp q85" -}}
+    {{- else if and (ne $img.MediaType.SubType "webp") (ne $img.MediaType.SubType "svg") -}}
+      {{- $optimized = $img.Resize (printf "%dx webp q85" $img.Width) -}}
+    {{- end -}}
+    <img src="{{ $optimized.RelPermalink }}" alt="{{ .Text }}" {{ with .Title }}title="{{ . }}"{{ end }} width="{{ $optimized.Width }}" height="{{ $optimized.Height }}" loading="lazy" style="max-width: 100%; height: auto;" />
+  {{- else -}}
+    <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title }}title="{{ . }}"{{ end }} loading="lazy" style="max-width: 100%; height: auto;" />
+  {{- end -}}
+{{- end -}}

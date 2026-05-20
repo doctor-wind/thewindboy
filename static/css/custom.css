@@ -105,9 +105,30 @@ content a:hover {
     60% { transform: rotate(5deg); }
     80% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
-}
 .swinging {
     animation: swing 0.8s ease-in-out;
+}
+
+/* Pull to Refresh overrides */
+html, body {
+    overscroll-behavior-y: none;
+}
+#ptr-container {
+    position: absolute;
+    top: -60px; 
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+#ptr-container .ptr-icon {
+    font-size: 1.5em;
+    margin-right: 8px;
+    transform-origin: top center;
 }
 
 /* Page Load Transition */

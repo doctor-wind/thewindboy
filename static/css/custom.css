@@ -75,21 +75,14 @@ nav a.active, nav a[aria-current="page"] {
 .post-arrow {
     display: inline-block !important;
     flex: none !important;
-    width: 0.5em;
-    height: 0.5em;
-    border-top: 1.5px solid #444;
-    border-right: 1.5px solid #444;
-    transform: rotate(45deg);
+    width: 0.85em;
+    height: 0.85em;
     opacity: 0.5;
-    margin-bottom: -0.05em;
-    font-style: normal;
+    margin-bottom: -0.1em;
     transition: opacity 0.2s;
 }
-@media (prefers-color-scheme: dark) {
-    .post-arrow {
-        border-top-color: #ccc;
-        border-right-color: #ccc;
-    }
+.post-link:hover .post-arrow {
+    opacity: 0.8;
 }
 
 /* Article spacing */

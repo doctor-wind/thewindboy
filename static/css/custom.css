@@ -62,7 +62,6 @@ nav a.active, nav a[aria-current="page"] {
 
 /* Blog list titles */
 .blog-posts a {
-    font-weight: bold;
     font-size: 1.15em;
 }
 

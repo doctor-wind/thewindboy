@@ -77,11 +77,18 @@ nav a.active, nav a[aria-current="page"] {
     flex-shrink: 0;
     width: 0.5em;
     height: 0.5em;
-    border-top: 1.5px solid currentColor;
-    border-right: 1.5px solid currentColor;
+    border-top: 1.5px solid #444;
+    border-right: 1.5px solid #444;
     transform: rotate(45deg);
-    opacity: 0.45;
+    opacity: 0.5;
     margin-bottom: -0.05em;
+    transition: opacity 0.2s;
+}
+@media (prefers-color-scheme: dark) {
+    .post-arrow {
+        border-top-color: #ccc;
+        border-right-color: #ccc;
+    }
 }
 
 /* Article spacing */
@@ -123,6 +130,7 @@ content a:hover {
     60% { transform: rotate(5deg); }
     80% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
+}
 .swinging {
     animation: swing 0.8s ease-in-out;
 }

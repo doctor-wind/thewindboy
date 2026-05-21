@@ -65,6 +65,25 @@ nav a.active, nav a[aria-current="page"] {
     font-size: 1.15em;
 }
 
+/* Post title link with arrow */
+.post-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: nowrap;
+}
+.post-arrow {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.5em;
+    height: 0.5em;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.45;
+    margin-bottom: -0.05em;
+}
+
 /* Article spacing */
 content p {
     line-height: 1.8;

@@ -5,8 +5,8 @@ on:
     branches:
       - "source"
   schedule:
-    # 每天零点构建一次（可根据需要调整）
-    - cron: '0 0 * * *'
+    # 每小时自动构建一次，用于定时发布未来的文章
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:

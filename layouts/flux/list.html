@@ -57,18 +57,41 @@
     font-style: italic;
   }
 
-  /* Blob container — organic rounded shape */
+  /* Flux grid container */
   .flux-blob {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1.5rem;
-    border-radius: 48% 52% 55% 45% / 50% 45% 55% 50%;
-    background: rgba(150, 150, 150, 0.04);
-    border: 1px dashed rgba(150,150,150,0.2);
-    max-width: 100%;
+  }
+
+  /* Search wrapper */
+  .flux-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .flux-search-clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--text-color);
+    opacity: 0.4;
+    padding: 2px 4px;
+    display: none;
+  }
+  .flux-search-clear:hover {
+    opacity: 0.8;
+  }
+  .flux-search-wrap .flux-search {
+    padding-right: 28px;
   }
 
   /* Capsule styles — light mode */
@@ -136,9 +159,8 @@
       background: rgba(200,200,200,0.08);
       border-color: #777;
     }
-    .flux-blob {
-      background: rgba(200, 200, 200, 0.04);
-      border-color: rgba(200,200,200,0.12);
+    .flux-search-clear {
+      color: var(--text-color);
     }
     .flux-capsule {
       color: #f0f0f0 !important;
@@ -159,9 +181,8 @@
     .flux-search {
       width: 100%;
     }
-    .flux-blob {
-      padding: 1.5rem 1rem;
-      border-radius: 40% 60% 50% 50% / 55% 45% 55% 45%;
+    .flux-search-wrap {
+      width: 100%;
     }
   }
 </style>
@@ -169,7 +190,10 @@
 <div class="flux-header">
   <h1>Flux</h1>
   <div class="flux-actions">
-    <input type="text" class="flux-search" id="flux-search" placeholder="Search feeds..." autocomplete="off" />
+    <div class="flux-search-wrap">
+      <input type="text" class="flux-search" id="flux-search" placeholder="Search feeds..." autocomplete="off" />
+      <button class="flux-search-clear" id="flux-search-clear" type="button">✕</button>
+    </div>
     <button class="flux-export-btn" id="flux-export" onclick="exportOPML()">Export as OPML</button>
   </div>
 </div>
@@ -434,10 +458,18 @@ function renderFlux(query) {
 
 // ===== Search =====
 const searchInput = document.getElementById('flux-search');
+const clearBtn = document.getElementById('flux-search-clear');
 let searchTimeout;
 searchInput.addEventListener('input', function() {
   clearTimeout(searchTimeout);
+  clearBtn.style.display = this.value ? 'block' : 'none';
   searchTimeout = setTimeout(() => renderFlux(this.value), 150);
+});
+clearBtn.addEventListener('click', function() {
+  searchInput.value = '';
+  clearBtn.style.display = 'none';
+  renderFlux('');
+  searchInput.focus();
 });
 
 // Re-render on color scheme change for proper dark mode colors

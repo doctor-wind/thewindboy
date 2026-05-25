@@ -411,7 +411,8 @@ const SIZE_X = containerW;
 const RADIUS_X = Math.max(120, (SIZE_X / 2) - 80);
 // Keep it slightly oblate
 const RADIUS_Y = RADIUS_X * 0.9; 
-const SIZE_Y = RADIUS_Y * 2 + 60;
+// Add 120px padding (60 top, 60 bottom) to prevent top/bottom tags from being cut off or overlapped
+const SIZE_Y = RADIUS_Y * 2 + 120;
 
 wrap.style.height = SIZE_Y + 'px';
 globe.style.width = SIZE_X + 'px';

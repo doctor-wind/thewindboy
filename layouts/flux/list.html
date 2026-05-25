@@ -473,6 +473,8 @@ let angleX = -0.2;
 let angleY = 0;
 let speedY = 0.002;  // auto-rotate speed
 let dragging = false;
+let isHovering = false;
+let isSearching = false;
 let lastMx = 0, lastMy = 0;
 let spinMode = false; // fast spin for no-results
 let spinSpeed = 0;
@@ -539,7 +541,7 @@ function animate() {
         spinMode = false;
         speedY = 0.002;
       }
-    } else {
+    } else if (!isSearching) {
       angleY -= speedY;
     }
   }
@@ -591,6 +593,7 @@ const clearBtn = document.getElementById('flux-search-clear');
 
 function doSearch(query) {
   const q = (query || '').trim().toLowerCase();
+  isSearching = q.length > 0;
   let matchedCount = 0;
   let firstMatchIndex = -1;
 

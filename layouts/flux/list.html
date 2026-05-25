@@ -43,10 +43,12 @@
     color: var(--text-color);
     transition: background 0.2s, border-color 0.2s;
     white-space: nowrap;
+    text-decoration: none !important;
   }
   .flux-export-btn:hover {
     background: rgba(150,150,150,0.1);
     border-color: #bbb;
+    text-decoration: none !important;
   }
   .flux-stats {
     font-size: 0.8em;
@@ -55,27 +57,21 @@
     font-style: italic;
   }
 
-  /* Category section */
-  .flux-category {
-    margin-bottom: 2rem;
-  }
-  .flux-category-title {
-    font-size: 0.9em;
-    font-weight: bold;
-    opacity: 0.6;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px dashed rgba(150,150,150,0.3);
-  }
-  .flux-grid {
+  /* Blob container — organic rounded shape */
+  .flux-blob {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    border-radius: 48% 52% 55% 45% / 50% 45% 55% 50%;
+    background: rgba(150, 150, 150, 0.04);
+    border: 1px dashed rgba(150,150,150,0.2);
+    max-width: 100%;
   }
 
-  /* Capsule styles */
+  /* Capsule styles — light mode */
   .flux-capsule {
     display: inline-flex;
     align-items: center;
@@ -107,10 +103,10 @@
     text-overflow: ellipsis;
   }
   .flux-capsule.flux-dimmed {
-    opacity: 0.15;
+    opacity: 0.12;
   }
   .flux-capsule mark {
-    background: rgba(255,255,200,0.5);
+    background: rgba(255,255,200,0.45);
     color: inherit;
     border-radius: 2px;
     padding: 0 1px;
@@ -124,6 +120,37 @@
     display: none;
   }
 
+  /* Dark mode adaptations */
+  @media (prefers-color-scheme: dark) {
+    .flux-search {
+      border-color: #555;
+    }
+    .flux-search:focus {
+      border-color: #888;
+      box-shadow: 0 0 0 2px rgba(200,200,200,0.1);
+    }
+    .flux-export-btn {
+      border-color: #555;
+    }
+    .flux-export-btn:hover {
+      background: rgba(200,200,200,0.08);
+      border-color: #777;
+    }
+    .flux-blob {
+      background: rgba(200, 200, 200, 0.04);
+      border-color: rgba(200,200,200,0.12);
+    }
+    .flux-capsule {
+      color: #f0f0f0 !important;
+    }
+    .flux-capsule:hover {
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    }
+    .flux-capsule mark {
+      background: rgba(255,255,200,0.3);
+    }
+  }
+
   @media (max-width: 600px) {
     .flux-header {
       flex-direction: column;
@@ -132,20 +159,24 @@
     .flux-search {
       width: 100%;
     }
+    .flux-blob {
+      padding: 1.5rem 1rem;
+      border-radius: 40% 60% 50% 50% / 55% 45% 55% 45%;
+    }
   }
 </style>
 
 <div class="flux-header">
   <h1>Flux</h1>
   <div class="flux-actions">
-    <input type="text" class="flux-search" id="flux-search" placeholder="搜索订阅源..." autocomplete="off" />
-    <button class="flux-export-btn" id="flux-export" onclick="exportOPML()">导出 .opml</button>
+    <input type="text" class="flux-search" id="flux-search" placeholder="Search feeds..." autocomplete="off" />
+    <button class="flux-export-btn" id="flux-export" onclick="exportOPML()">Export as OPML</button>
   </div>
 </div>
 <div class="flux-stats" id="flux-stats"></div>
 
 <div id="flux-container"></div>
-<div class="flux-no-results" id="flux-no-results">没有找到匹配的订阅源</div>
+<div class="flux-no-results" id="flux-no-results">No matching feeds found</div>
 
 <script>
 // ===== RSS Data =====
@@ -317,16 +348,29 @@ const fluxData = [
   }
 ];
 
-// ===== Color Palette =====
-const capsuleColors = [
-  '#e06c75', '#e5c07b', '#61afef', '#c678dd', '#56b6c2',
-  '#98c379', '#d19a66', '#be5046', '#7c8ea0', '#c586c0',
-  '#4ec9b0', '#ce9178', '#6a9955', '#d7ba7d', '#9cdcfe',
-  '#569cd6', '#b5cea8', '#f44747', '#d4d4d4', '#808080',
-  '#e88a6a', '#73c991', '#dcdcaa', '#b39ddb', '#f06292',
-  '#4dd0e1', '#aed581', '#ff8a65', '#90a4ae', '#a1887f',
-  '#7986cb', '#4db6ac', '#fff176', '#ff8a80', '#ea80fc'
+// ===== Color Palette — muted, readable tones for both light & dark =====
+const capsuleColorsLight = [
+  '#6b7280', '#7c6f64', '#7e6e85', '#5f7a8a', '#6d7e5f',
+  '#8b6f5c', '#6a7d8b', '#7b6b8a', '#5c7d6d', '#8a6b6b',
+  '#6e7b6b', '#7a6d7b', '#5d7a7a', '#7b7060', '#6b6f80',
+  '#85706a', '#607a6b', '#7a6570', '#6b7a5d', '#706b80',
+  '#8b7565', '#5e7580', '#7b6a65', '#657a75', '#806b75',
+  '#6a7570', '#757060', '#6b6a7a', '#807565', '#657070'
 ];
+
+const capsuleColorsDark = [
+  '#8b9bb5', '#a89984', '#b39dbd', '#7eaabb', '#95b07e',
+  '#c09880', '#8da8b8', '#a88db8', '#80b09a', '#b88d8d',
+  '#92a890', '#a890a8', '#80aaa5', '#a89870', '#8090a5',
+  '#b8908a', '#80a590', '#a88598', '#90a880', '#9088a5',
+  '#b89a82', '#7e98a8', '#a89085', '#85a898', '#a888a0',
+  '#8a9890', '#989070', '#8888a5', '#a89882', '#8a9898'
+];
+
+// Detect dark mode
+function isDarkMode() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
 
 // Seeded random based on string hash for stable colors
 function hashStr(str) {
@@ -339,7 +383,8 @@ function hashStr(str) {
 }
 
 function getCapsuleColor(name) {
-  return capsuleColors[hashStr(name) % capsuleColors.length];
+  const palette = isDarkMode() ? capsuleColorsDark : capsuleColorsLight;
+  return palette[hashStr(name) % palette.length];
 }
 
 function getFavicon(url) {
@@ -357,16 +402,12 @@ function renderFlux(query) {
   const noResults = document.getElementById('flux-no-results');
   const statsEl = document.getElementById('flux-stats');
   const q = (query || '').trim().toLowerCase();
-  let html = '';
   let totalFeeds = 0;
   let matchedFeeds = 0;
+  let allCapsules = '';
 
   fluxData.forEach(group => {
     totalFeeds += group.feeds.length;
-  });
-
-  fluxData.forEach(group => {
-    let capsules = '';
     group.feeds.forEach(feed => {
       const matched = !q || feed.name.toLowerCase().includes(q) || feed.url.toLowerCase().includes(q);
       if (matched) matchedFeeds++;
@@ -378,20 +419,16 @@ function renderFlux(query) {
         const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
         displayName = displayName.replace(regex, '<mark>$1</mark>');
       }
-      capsules += `<a class="flux-capsule${dimClass}" href="${feed.url}" target="_blank" rel="noopener" style="background:${color};" data-rss="${encodeURIComponent(feed.rss)}" data-name="${feed.name}" data-url="${feed.url}">` +
+      allCapsules += `<a class="flux-capsule${dimClass}" href="${feed.url}" target="_blank" rel="noopener" style="background:${color};" data-rss="${encodeURIComponent(feed.rss)}" data-name="${feed.name}" data-url="${feed.url}">` +
         `<img src="${favicon}" alt="" loading="lazy" onerror="this.style.display='none'" />` +
         `<span class="flux-name">${displayName}</span></a>`;
     });
-
-    html += `<div class="flux-category">` +
-      `<div class="flux-category-title">${group.category}</div>` +
-      `<div class="flux-grid">${capsules}</div></div>`;
   });
 
-  container.innerHTML = html;
+  container.innerHTML = `<div class="flux-blob">${allCapsules}</div>`;
   statsEl.textContent = q
-    ? `找到 ${matchedFeeds} / ${totalFeeds} 个订阅源`
-    : `共 ${totalFeeds} 个订阅源`;
+    ? `Found ${matchedFeeds} of ${totalFeeds} feeds`
+    : `${totalFeeds} feeds in total`;
   noResults.style.display = (q && matchedFeeds === 0) ? 'block' : 'none';
 }
 
@@ -401,6 +438,11 @@ let searchTimeout;
 searchInput.addEventListener('input', function() {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => renderFlux(this.value), 150);
+});
+
+// Re-render on color scheme change for proper dark mode colors
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  renderFlux(searchInput.value);
 });
 
 // ===== OPML Export =====

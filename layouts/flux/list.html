@@ -105,10 +105,10 @@
     position: absolute;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 4px 12px 4px 8px;
+    gap: 4px;
+    padding: 3px 10px 3px 6px;
     border-radius: 16px;
-    font-size: 0.75em;
+    font-size: 0.65em;
     text-decoration: none !important;
     color: #fff !important;
     cursor: pointer;
@@ -403,8 +403,8 @@ const statsEl = document.getElementById('flux-stats');
 
 // Sphere sizing
 const isMobile = window.innerWidth < 600;
-const RADIUS = isMobile ? 200 : 320;
-const SIZE = RADIUS * 2 + 80;
+const RADIUS = isMobile ? 160 : 250; // Decreased radius to pack capsules tighter
+const SIZE = RADIUS * 2 + 100;
 wrap.style.height = SIZE + 'px';
 globe.style.width = SIZE + 'px';
 globe.style.height = SIZE + 'px';
@@ -426,6 +426,8 @@ for (let i = 0; i < N; i++) {
 
 // Create DOM elements
 const tagEls = [];
+let isHovering = false;
+
 allFeeds.forEach((feed, i) => {
   const a = document.createElement('a');
   a.className = 'flux-tag';
@@ -437,6 +439,10 @@ allFeeds.forEach((feed, i) => {
   a.style.top = '0px';
   a.style.transformOrigin = '0 0';
   a.dataset.index = i;
+  
+  a.addEventListener('mouseenter', () => { isHovering = true; });
+  a.addEventListener('mouseleave', () => { isHovering = false; });
+  
   const fav = getFavicon(feed.url);
   a.innerHTML = `<img src="${fav}" alt="" loading="lazy" onerror="this.style.display='none'" /><span class="flux-name">${feed.name}</span>`;
   globe.appendChild(a);
@@ -521,7 +527,7 @@ function render() {
 }
 
 function animate() {
-  if (!dragging) {
+  if (!dragging && !isHovering) {
     if (spinMode) {
       angleY -= spinSpeed;
       spinSpeed *= (1 - spinDecel);

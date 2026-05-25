@@ -6,7 +6,7 @@
     <time datetime='{{ .Date.Format "2006-01-02" }}'>
       {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
     </time>
-    <span style="font-family: monospace; font-style: italic; font-size: 14px; opacity: 0.8;"> · {{ .WordCount }} 字</span>
+    <span style="font-family: monospace; font-style: italic; font-size: 14px; opacity: 0.8;"> · {{ .WordCount }} <span style="font-size: 13px;">字</span></span>
   </i>
 </p>
 {{ end }}{{ end }}

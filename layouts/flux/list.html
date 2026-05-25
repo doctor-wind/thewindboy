@@ -7,7 +7,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   .flux-header h1 {
     margin: 0;
@@ -18,8 +18,13 @@
     align-items: center;
     gap: 10px;
   }
+  .flux-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
   .flux-search {
-    padding: 6px 12px;
+    padding: 6px 28px 6px 12px;
     border: 1px solid #ddd;
     border-radius: 20px;
     font-size: 0.85em;
@@ -32,6 +37,24 @@
   .flux-search:focus {
     border-color: #999;
     box-shadow: 0 0 0 2px rgba(150,150,150,0.15);
+  }
+  .flux-search-clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--text-color);
+    opacity: 0.4;
+    padding: 2px 4px;
+    display: none;
+  }
+  .flux-search-clear:hover {
+    opacity: 0.8;
   }
   .flux-export-btn {
     padding: 6px 14px;
@@ -53,137 +76,108 @@
   .flux-stats {
     font-size: 0.8em;
     opacity: 0.5;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     font-style: italic;
+    text-align: center;
   }
 
-  /* Flux grid container */
-  .flux-blob {
+  /* Globe container */
+  .flux-globe-wrap {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
     justify-content: center;
     align-items: center;
-  }
-
-  /* Search wrapper */
-  .flux-search-wrap {
+    width: 100%;
     position: relative;
-    display: flex;
-    align-items: center;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
   }
-  .flux-search-clear {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    color: var(--text-color);
-    opacity: 0.4;
-    padding: 2px 4px;
-    display: none;
+  .flux-globe-wrap:active {
+    cursor: grabbing;
   }
-  .flux-search-clear:hover {
-    opacity: 0.8;
-  }
-  .flux-search-wrap .flux-search {
-    padding-right: 28px;
+  .flux-globe {
+    position: relative;
+    transform-style: preserve-3d;
   }
 
-  /* Capsule styles — light mode */
-  .flux-capsule {
+  /* Capsule on globe */
+  .flux-tag {
+    position: absolute;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 5px 14px 5px 10px;
-    border-radius: 20px;
-    font-size: 0.82em;
+    gap: 5px;
+    padding: 4px 12px 4px 8px;
+    border-radius: 16px;
+    font-size: 0.75em;
     text-decoration: none !important;
     color: #fff !important;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s;
     cursor: pointer;
-    line-height: 1.4;
+    line-height: 1.3;
     white-space: nowrap;
+    transform-origin: center center;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
-  .flux-capsule:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  .flux-tag:hover {
     text-decoration: none !important;
   }
-  .flux-capsule img {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
+  .flux-tag img {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
     flex-shrink: 0;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.25);
   }
-  .flux-capsule .flux-name {
+  .flux-tag .flux-name {
+    max-width: 140px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .flux-capsule.flux-dimmed {
-    opacity: 0.12;
-  }
-  .flux-capsule mark {
-    background: rgba(255,255,200,0.45);
+  .flux-tag mark {
+    background: rgba(255,255,200,0.5);
     color: inherit;
     border-radius: 2px;
     padding: 0 1px;
   }
-  .flux-no-results {
-    font-size: 0.85em;
-    opacity: 0.5;
-    font-style: italic;
-    padding: 2rem 0;
-    text-align: center;
-    display: none;
+  .flux-tag.flux-dimmed {
+    opacity: 0.04 !important;
+    pointer-events: none;
   }
 
-  /* Dark mode adaptations */
+  /* No results overlay */
+  .flux-no-results {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9em;
+    opacity: 0;
+    font-style: italic;
+    color: var(--text-color);
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    text-align: center;
+    z-index: 10;
+  }
+  .flux-no-results.flux-show {
+    opacity: 0.6;
+  }
+
+  /* Dark mode */
   @media (prefers-color-scheme: dark) {
-    .flux-search {
-      border-color: #555;
-    }
-    .flux-search:focus {
-      border-color: #888;
-      box-shadow: 0 0 0 2px rgba(200,200,200,0.1);
-    }
-    .flux-export-btn {
-      border-color: #555;
-    }
-    .flux-export-btn:hover {
-      background: rgba(200,200,200,0.08);
-      border-color: #777;
-    }
-    .flux-search-clear {
-      color: var(--text-color);
-    }
-    .flux-capsule {
-      color: #f0f0f0 !important;
-    }
-    .flux-capsule:hover {
-      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-    }
-    .flux-capsule mark {
-      background: rgba(255,255,200,0.3);
-    }
+    .flux-search { border-color: #555; }
+    .flux-search:focus { border-color: #888; box-shadow: 0 0 0 2px rgba(200,200,200,0.1); }
+    .flux-export-btn { border-color: #555; }
+    .flux-export-btn:hover { background: rgba(200,200,200,0.08); border-color: #777; }
+    .flux-tag { color: #f0f0f0 !important; }
+    .flux-tag mark { background: rgba(255,255,200,0.3); }
   }
 
   @media (max-width: 600px) {
-    .flux-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .flux-search {
-      width: 100%;
-    }
-    .flux-search-wrap {
-      width: 100%;
-    }
+    .flux-header { flex-direction: column; align-items: flex-start; }
+    .flux-search-wrap { width: 100%; }
+    .flux-search { width: 100%; }
   }
 </style>
 
@@ -194,13 +188,14 @@
       <input type="text" class="flux-search" id="flux-search" placeholder="Search feeds..." autocomplete="off" />
       <button class="flux-search-clear" id="flux-search-clear" type="button">✕</button>
     </div>
-    <button class="flux-export-btn" id="flux-export" onclick="exportOPML()">Export as OPML</button>
+    <button class="flux-export-btn" onclick="exportOPML()">Export as OPML</button>
   </div>
 </div>
 <div class="flux-stats" id="flux-stats"></div>
-
-<div id="flux-container"></div>
-<div class="flux-no-results" id="flux-no-results">No matching feeds found</div>
+<div class="flux-globe-wrap" id="flux-globe-wrap">
+  <div class="flux-globe" id="flux-globe"></div>
+  <div class="flux-no-results" id="flux-no-results">No matching feeds found</div>
+</div>
 
 <script>
 // ===== RSS Data =====
@@ -372,126 +367,293 @@ const fluxData = [
   }
 ];
 
-// ===== Color Palette — muted, readable tones for both light & dark =====
-const capsuleColorsLight = [
-  '#6b7280', '#7c6f64', '#7e6e85', '#5f7a8a', '#6d7e5f',
-  '#8b6f5c', '#6a7d8b', '#7b6b8a', '#5c7d6d', '#8a6b6b',
-  '#6e7b6b', '#7a6d7b', '#5d7a7a', '#7b7060', '#6b6f80',
-  '#85706a', '#607a6b', '#7a6570', '#6b7a5d', '#706b80',
-  '#8b7565', '#5e7580', '#7b6a65', '#657a75', '#806b75',
-  '#6a7570', '#757060', '#6b6a7a', '#807565', '#657070'
+// ===== Flatten all feeds =====
+const allFeeds = [];
+fluxData.forEach(g => g.feeds.forEach(f => allFeeds.push(f)));
+const totalFeeds = allFeeds.length;
+
+// ===== Color Palette =====
+const colorsLight = [
+  '#6b7280','#7c6f64','#7e6e85','#5f7a8a','#6d7e5f',
+  '#8b6f5c','#6a7d8b','#7b6b8a','#5c7d6d','#8a6b6b',
+  '#6e7b6b','#7a6d7b','#5d7a7a','#7b7060','#6b6f80',
+  '#85706a','#607a6b','#7a6570','#6b7a5d','#706b80',
+  '#8b7565','#5e7580','#7b6a65','#657a75','#806b75',
+  '#6a7570','#757060','#6b6a7a','#807565','#657070'
+];
+const colorsDark = [
+  '#8b9bb5','#a89984','#b39dbd','#7eaabb','#95b07e',
+  '#c09880','#8da8b8','#a88db8','#80b09a','#b88d8d',
+  '#92a890','#a890a8','#80aaa5','#a89870','#8090a5',
+  '#b8908a','#80a590','#a88598','#90a880','#9088a5',
+  '#b89a82','#7e98a8','#a89085','#85a898','#a888a0',
+  '#8a9890','#989070','#8888a5','#a89882','#8a9898'
 ];
 
-const capsuleColorsDark = [
-  '#8b9bb5', '#a89984', '#b39dbd', '#7eaabb', '#95b07e',
-  '#c09880', '#8da8b8', '#a88db8', '#80b09a', '#b88d8d',
-  '#92a890', '#a890a8', '#80aaa5', '#a89870', '#8090a5',
-  '#b8908a', '#80a590', '#a88598', '#90a880', '#9088a5',
-  '#b89a82', '#7e98a8', '#a89085', '#85a898', '#a888a0',
-  '#8a9890', '#989070', '#8888a5', '#a89882', '#8a9898'
-];
+function isDark() { return window.matchMedia('(prefers-color-scheme: dark)').matches; }
+function hashStr(s) { let h=0; for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;} return Math.abs(h); }
+function getColor(name) { const p=isDark()?colorsDark:colorsLight; return p[hashStr(name)%p.length]; }
+function getFavicon(url) { try{return `https://www.google.com/s2/favicons?sz=32&domain=${new URL(url).hostname}`;}catch{return '';} }
 
-// Detect dark mode
-function isDarkMode() {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
+// ===== Globe Engine =====
+const globe = document.getElementById('flux-globe');
+const wrap = document.getElementById('flux-globe-wrap');
+const noResultsEl = document.getElementById('flux-no-results');
+const statsEl = document.getElementById('flux-stats');
 
-// Seeded random based on string hash for stable colors
-function hashStr(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(i);
-    hash |= 0;
-  }
-  return Math.abs(hash);
-}
+// Sphere sizing
+const isMobile = window.innerWidth < 600;
+const RADIUS = isMobile ? 200 : 320;
+const SIZE = RADIUS * 2 + 80;
+wrap.style.height = SIZE + 'px';
+globe.style.width = SIZE + 'px';
+globe.style.height = SIZE + 'px';
 
-function getCapsuleColor(name) {
-  const palette = isDarkMode() ? capsuleColorsDark : capsuleColorsLight;
-  return palette[hashStr(name) % palette.length];
-}
-
-function getFavicon(url) {
-  try {
-    const domain = new URL(url).hostname;
-    return `https://www.google.com/s2/favicons?sz=32&domain=${domain}`;
-  } catch {
-    return '';
-  }
-}
-
-// ===== Render =====
-function renderFlux(query) {
-  const container = document.getElementById('flux-container');
-  const noResults = document.getElementById('flux-no-results');
-  const statsEl = document.getElementById('flux-stats');
-  const q = (query || '').trim().toLowerCase();
-  let totalFeeds = 0;
-  let matchedFeeds = 0;
-  let allCapsules = '';
-
-  fluxData.forEach(group => {
-    totalFeeds += group.feeds.length;
-    group.feeds.forEach(feed => {
-      const matched = !q || feed.name.toLowerCase().includes(q) || feed.url.toLowerCase().includes(q);
-      if (matched) matchedFeeds++;
-      const dimClass = q && !matched ? ' flux-dimmed' : '';
-      const color = getCapsuleColor(feed.name);
-      const favicon = getFavicon(feed.url);
-      let displayName = feed.name;
-      if (q && matched) {
-        const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-        displayName = displayName.replace(regex, '<mark>$1</mark>');
-      }
-      allCapsules += `<a class="flux-capsule${dimClass}" href="${feed.url}" target="_blank" rel="noopener" style="background:${color};" data-rss="${encodeURIComponent(feed.rss)}" data-name="${feed.name}" data-url="${feed.url}">` +
-        `<img src="${favicon}" alt="" loading="lazy" onerror="this.style.display='none'" />` +
-        `<span class="flux-name">${displayName}</span></a>`;
-    });
+// Distribute points on sphere using Fibonacci spiral
+const points = [];
+const N = totalFeeds;
+const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+for (let i = 0; i < N; i++) {
+  const y = 1 - (i / (N - 1)) * 2; // -1 to 1
+  const radiusAtY = Math.sqrt(1 - y * y);
+  const theta = goldenAngle * i;
+  points.push({
+    x: Math.cos(theta) * radiusAtY,
+    y: y,
+    z: Math.sin(theta) * radiusAtY
   });
-
-  container.innerHTML = `<div class="flux-blob">${allCapsules}</div>`;
-  statsEl.textContent = q
-    ? `Found ${matchedFeeds} of ${totalFeeds} feeds`
-    : `${totalFeeds} feeds in total`;
-  noResults.style.display = (q && matchedFeeds === 0) ? 'block' : 'none';
 }
+
+// Create DOM elements
+const tagEls = [];
+allFeeds.forEach((feed, i) => {
+  const a = document.createElement('a');
+  a.className = 'flux-tag';
+  a.href = feed.url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.style.background = getColor(feed.name);
+  a.dataset.index = i;
+  const fav = getFavicon(feed.url);
+  a.innerHTML = `<img src="${fav}" alt="" loading="lazy" onerror="this.style.display='none'" /><span class="flux-name">${feed.name}</span>`;
+  globe.appendChild(a);
+  tagEls.push({
+    el: a,
+    origPoint: { ...points[i] },
+    matched: true,
+    feed: feed
+  });
+});
+
+// Rotation state
+let angleX = -0.3;
+let angleY = 0;
+let speedY = 0.003;  // auto-rotate speed
+let speedX = 0;
+let dragging = false;
+let lastMx = 0, lastMy = 0;
+let spinMode = false; // fast spin for no-results
+let spinSpeed = 0;
+let spinDecel = 0;
+
+// 3D rotation matrix multiply
+function rotatePoint(px, py, pz) {
+  const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+  const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+  // Rotate around Y
+  let x1 = px * cosY + pz * sinY;
+  let z1 = -px * sinY + pz * cosY;
+  let y1 = py;
+  // Rotate around X
+  let y2 = y1 * cosX - z1 * sinX;
+  let z2 = y1 * sinX + z1 * cosX;
+  return { x: x1, y: y2, z: z2 };
+}
+
+function render() {
+  const cx = SIZE / 2;
+  const cy = SIZE / 2;
+  const perspective = 600;
+
+  tagEls.forEach((item, i) => {
+    const p = item.origPoint;
+    const r = rotatePoint(p.x, p.y, p.z);
+    const scale3d = perspective / (perspective + r.z * RADIUS);
+    const x2d = cx + r.x * RADIUS * scale3d;
+    const y2d = cy + r.y * RADIUS * scale3d;
+
+    // Depth: z goes from -1 (back) to 1 (front)
+    const depthNorm = (r.z + 1) / 2; // 0 = back, 1 = front
+    const opacity = item.matched ? (0.15 + depthNorm * 0.85) : 0.03;
+    const blur = depthNorm > 0.3 ? 0 : (1 - depthNorm) * 1.5;
+
+    item.el.style.transform = `translate(-50%, -50%) translate(${x2d}px, ${y2d}px) scale(${scale3d})`;
+    item.el.style.zIndex = Math.round(depthNorm * 1000);
+    item.el.style.opacity = opacity;
+    item.el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+    item.el.style.pointerEvents = (depthNorm > 0.25 && item.matched) ? 'auto' : 'none';
+  });
+}
+
+function animate() {
+  if (!dragging) {
+    if (spinMode) {
+      angleY += spinSpeed;
+      spinSpeed *= (1 - spinDecel);
+      if (Math.abs(spinSpeed) < 0.002) {
+        spinMode = false;
+        speedY = 0.003;
+      }
+    } else {
+      angleY += speedY;
+    }
+  }
+  render();
+  requestAnimationFrame(animate);
+}
+
+// ===== Mouse / Touch Drag =====
+wrap.addEventListener('mousedown', e => {
+  dragging = true;
+  lastMx = e.clientX;
+  lastMy = e.clientY;
+  spinMode = false;
+});
+window.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  const dx = e.clientX - lastMx;
+  const dy = e.clientY - lastMy;
+  angleY += dx * 0.005;
+  angleX += dy * 0.005;
+  angleX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, angleX));
+  lastMx = e.clientX;
+  lastMy = e.clientY;
+});
+window.addEventListener('mouseup', () => { dragging = false; });
+
+// Touch support
+wrap.addEventListener('touchstart', e => {
+  dragging = true;
+  lastMx = e.touches[0].clientX;
+  lastMy = e.touches[0].clientY;
+  spinMode = false;
+}, { passive: true });
+window.addEventListener('touchmove', e => {
+  if (!dragging) return;
+  const dx = e.touches[0].clientX - lastMx;
+  const dy = e.touches[0].clientY - lastMy;
+  angleY += dx * 0.005;
+  angleX += dy * 0.005;
+  angleX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, angleX));
+  lastMx = e.touches[0].clientX;
+  lastMy = e.touches[0].clientY;
+}, { passive: true });
+window.addEventListener('touchend', () => { dragging = false; });
 
 // ===== Search =====
 const searchInput = document.getElementById('flux-search');
 const clearBtn = document.getElementById('flux-search-clear');
+
+function doSearch(query) {
+  const q = (query || '').trim().toLowerCase();
+  let matchedCount = 0;
+  let firstMatchIndex = -1;
+
+  tagEls.forEach((item, i) => {
+    const name = item.feed.name.toLowerCase();
+    const url = item.feed.url.toLowerCase();
+    const matched = !q || name.includes(q) || url.includes(q);
+    item.matched = matched;
+    if (matched) {
+      matchedCount++;
+      if (firstMatchIndex < 0) firstMatchIndex = i;
+    }
+    // Update highlight
+    if (q && matched) {
+      const regex = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      const highlighted = item.feed.name.replace(regex, '<mark>$1</mark>');
+      item.el.querySelector('.flux-name').innerHTML = highlighted;
+      item.el.classList.remove('flux-dimmed');
+    } else if (q && !matched) {
+      item.el.querySelector('.flux-name').textContent = item.feed.name;
+      item.el.classList.add('flux-dimmed');
+    } else {
+      item.el.querySelector('.flux-name').textContent = item.feed.name;
+      item.el.classList.remove('flux-dimmed');
+    }
+  });
+
+  statsEl.textContent = q
+    ? `Found ${matchedCount} of ${totalFeeds} feeds`
+    : `${totalFeeds} feeds in total`;
+
+  if (q && matchedCount === 0) {
+    // No results — fast spin then decelerate
+    noResultsEl.classList.remove('flux-show');
+    spinMode = true;
+    spinSpeed = 0.15;
+    spinDecel = 0.008;
+    setTimeout(() => { noResultsEl.classList.add('flux-show'); }, 800);
+  } else {
+    noResultsEl.classList.remove('flux-show');
+    if (q && firstMatchIndex >= 0) {
+      // Rotate globe so first match faces front
+      const p = tagEls[firstMatchIndex].origPoint;
+      const targetAngleY = -Math.atan2(p.x, p.z);
+      const targetAngleX = -Math.asin(p.y) * 0.5;
+      // Smooth transition
+      spinMode = false;
+      const startY = angleY, startX = angleX;
+      // Normalize target relative to current
+      let dy = targetAngleY - (startY % (2 * Math.PI));
+      if (dy > Math.PI) dy -= 2 * Math.PI;
+      if (dy < -Math.PI) dy += 2 * Math.PI;
+      const dx = targetAngleX - startX;
+      const duration = 600;
+      const t0 = performance.now();
+      function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+      function animateTo(now) {
+        const elapsed = now - t0;
+        const progress = Math.min(elapsed / duration, 1);
+        const e = ease(progress);
+        angleY = startY + dy * e;
+        angleX = startX + dx * e;
+        if (progress < 1) requestAnimationFrame(animateTo);
+      }
+      requestAnimationFrame(animateTo);
+    }
+  }
+}
+
 let searchTimeout;
 searchInput.addEventListener('input', function() {
   clearTimeout(searchTimeout);
   clearBtn.style.display = this.value ? 'block' : 'none';
-  searchTimeout = setTimeout(() => renderFlux(this.value), 150);
+  searchTimeout = setTimeout(() => doSearch(this.value), 200);
 });
 clearBtn.addEventListener('click', function() {
   searchInput.value = '';
   clearBtn.style.display = 'none';
-  renderFlux('');
+  doSearch('');
   searchInput.focus();
 });
 
-// Re-render on color scheme change for proper dark mode colors
+// Dark mode re-color
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  renderFlux(searchInput.value);
+  tagEls.forEach(item => { item.el.style.background = getColor(item.feed.name); });
 });
 
 // ===== OPML Export =====
 function exportOPML() {
-  let opml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  opml += '<opml version="2.0">\n<head>\n<title>Kar\'s RSS Subscriptions</title>\n</head>\n<body>\n';
-
+  let opml = '<?xml version="1.0" encoding="UTF-8"?>\n<opml version="2.0">\n<head>\n<title>Kar\'s RSS Subscriptions</title>\n</head>\n<body>\n';
   fluxData.forEach(group => {
-    opml += `<outline text="${escXml(group.category)}" title="${escXml(group.category)}">\n`;
+    opml += `<outline text="${esc(group.category)}" title="${esc(group.category)}">\n`;
     group.feeds.forEach(feed => {
-      opml += `  <outline type="rss" text="${escXml(feed.name)}" title="${escXml(feed.name)}" xmlUrl="${escXml(feed.rss)}" htmlUrl="${escXml(feed.url)}" />\n`;
+      opml += `  <outline type="rss" text="${esc(feed.name)}" title="${esc(feed.name)}" xmlUrl="${esc(feed.rss)}" htmlUrl="${esc(feed.url)}" />\n`;
     });
     opml += '</outline>\n';
   });
-
   opml += '</body>\n</opml>';
-
   const blob = new Blob([opml], { type: 'text/xml;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -499,12 +661,10 @@ function exportOPML() {
   a.click();
   URL.revokeObjectURL(a.href);
 }
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;'); }
 
-function escXml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
-}
-
-// Initial render
-renderFlux('');
+// ===== Init =====
+statsEl.textContent = `${totalFeeds} feeds in total`;
+animate();
 </script>
 {{ end }}

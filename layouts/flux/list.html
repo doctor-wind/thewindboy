@@ -422,10 +422,12 @@ globe.style.height = SIZE_Y + 'px';
 const points = [];
 const N = totalFeeds;
 const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-// Limit the Y range to avoid extreme poles where horizontal text overlaps heavily
-const Y_MAX = 0.85; 
 for (let i = 0; i < N; i++) {
-  const y = Y_MAX - (i / (N - 1)) * (Y_MAX * 2); 
+  // t goes linearly from 1 to -1
+  const t = 1 - (i / (N - 1)) * 2; 
+  // Use a non-linear mapping (t^2 with sign) to make poles sparser and equator denser
+  // This keeps the full sphere shape but avoids the extreme text overlap at poles
+  const y = t * Math.abs(t); 
   const radiusAtY = Math.sqrt(1 - y * y);
   const theta = goldenAngle * i;
   points.push({

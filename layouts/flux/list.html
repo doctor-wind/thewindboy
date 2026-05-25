@@ -88,7 +88,7 @@
     align-items: center;
     width: 100%;
     position: relative;
-    overflow: hidden;
+    /* Removed overflow: hidden so the sides aren't cropped! */
     cursor: grab;
     user-select: none;
   }
@@ -106,9 +106,9 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 3px 10px 3px 6px;
+    padding: 3px 8px 3px 5px;
     border-radius: 16px;
-    font-size: 0.65em;
+    font-size: 10px; /* Fixed small font size */
     text-decoration: none !important;
     color: #fff !important;
     cursor: pointer;
@@ -401,14 +401,16 @@ const wrap = document.getElementById('flux-globe-wrap');
 const noResultsEl = document.getElementById('flux-no-results');
 const statsEl = document.getElementById('flux-stats');
 
-// Sphere sizing
-const isMobile = window.innerWidth < 600;
-const screenW = window.innerWidth;
-// Make the globe an ellipsoid (wider than tall) to fill horizontal space and fit text tags better
-const RADIUS_X = isMobile ? Math.min(170, (screenW - 40) / 2) : 340;
-const RADIUS_Y = isMobile ? 160 : 240;
-const SIZE_X = RADIUS_X * 2 + 100;
+// Sphere sizing based on actual screen and container
+const wrap = document.getElementById('flux-globe-wrap');
+const screenW = document.documentElement.clientWidth;
+// Maximize width up to 800px, but keep within screen bounds to avoid scrollbars
+const SIZE_X = Math.min(800, screenW - 20); 
+const RADIUS_X = (SIZE_X - 100) / 2;
+// Keep it slightly oblate (wider than tall) but close to a sphere
+const RADIUS_Y = RADIUS_X * 0.9; 
 const SIZE_Y = RADIUS_Y * 2 + 100;
+
 wrap.style.height = SIZE_Y + 'px';
 globe.style.width = SIZE_X + 'px';
 globe.style.height = SIZE_Y + 'px';

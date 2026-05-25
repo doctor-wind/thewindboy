@@ -401,15 +401,16 @@ const wrap = document.getElementById('flux-globe-wrap');
 const noResultsEl = document.getElementById('flux-no-results');
 const statsEl = document.getElementById('flux-stats');
 
-// Sphere sizing based on actual screen and container
-const wrap = document.getElementById('flux-globe-wrap');
-const screenW = document.documentElement.clientWidth;
-// Maximize width up to 800px, but keep within screen bounds to avoid scrollbars
-const SIZE_X = Math.min(800, screenW - 20); 
-const RADIUS_X = (SIZE_X - 100) / 2;
-// Keep it slightly oblate (wider than tall) but close to a sphere
+// Sphere sizing based on actual container to prevent parent clipping
+const containerW = wrap.clientWidth || Math.min(800, document.documentElement.clientWidth);
+
+// Force globe to stay inside the container bounds
+const SIZE_X = containerW;
+// Reserve 80px on left/right so the wide text tags don't overflow the container
+const RADIUS_X = Math.max(120, (SIZE_X / 2) - 80);
+// Keep it slightly oblate
 const RADIUS_Y = RADIUS_X * 0.9; 
-const SIZE_Y = RADIUS_Y * 2 + 100;
+const SIZE_Y = RADIUS_Y * 2 + 60;
 
 wrap.style.height = SIZE_Y + 'px';
 globe.style.width = SIZE_X + 'px';

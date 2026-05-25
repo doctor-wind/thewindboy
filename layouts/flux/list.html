@@ -422,8 +422,10 @@ globe.style.height = SIZE_Y + 'px';
 const points = [];
 const N = totalFeeds;
 const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+// Limit the Y range to avoid extreme poles where horizontal text overlaps heavily
+const Y_MAX = 0.85; 
 for (let i = 0; i < N; i++) {
-  const y = 1 - (i / (N - 1)) * 2; // -1 to 1
+  const y = Y_MAX - (i / (N - 1)) * (Y_MAX * 2); 
   const radiusAtY = Math.sqrt(1 - y * y);
   const theta = goldenAngle * i;
   points.push({

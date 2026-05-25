@@ -403,11 +403,15 @@ const statsEl = document.getElementById('flux-stats');
 
 // Sphere sizing
 const isMobile = window.innerWidth < 600;
-const RADIUS = isMobile ? 160 : 250; // Decreased radius to pack capsules tighter
-const SIZE = RADIUS * 2 + 100;
-wrap.style.height = SIZE + 'px';
-globe.style.width = SIZE + 'px';
-globe.style.height = SIZE + 'px';
+const screenW = window.innerWidth;
+// Make the globe an ellipsoid (wider than tall) to fill horizontal space and fit text tags better
+const RADIUS_X = isMobile ? Math.min(170, (screenW - 40) / 2) : 340;
+const RADIUS_Y = isMobile ? 160 : 240;
+const SIZE_X = RADIUS_X * 2 + 100;
+const SIZE_Y = RADIUS_Y * 2 + 100;
+wrap.style.height = SIZE_Y + 'px';
+globe.style.width = SIZE_X + 'px';
+globe.style.height = SIZE_Y + 'px';
 
 // Distribute points on sphere using Fibonacci spiral
 const points = [];
@@ -493,20 +497,20 @@ function rotatePoint(px, py, pz) {
 }
 
 function render() {
-  const cx = SIZE / 2;
-  const cy = SIZE / 2;
-  const perspective = SIZE * 1.5; // Smooth perspective
+  const cx = SIZE_X / 2;
+  const cy = SIZE_Y / 2;
+  const perspective = RADIUS_X * 2.5; // Smooth perspective based on width
 
   tagEls.forEach((item) => {
     const p = item.origPoint;
     const r = rotatePoint(p.x, p.y, p.z);
     
     // Z in 3D space. Positive is towards camera.
-    const z3d = r.z * RADIUS;
+    const z3d = r.z * RADIUS_X;
     const scale3d = perspective / (perspective - z3d);
     
-    const x2d = r.x * RADIUS * scale3d;
-    const y2d = r.y * RADIUS * scale3d;
+    const x2d = r.x * RADIUS_X * scale3d;
+    const y2d = r.y * RADIUS_Y * scale3d;
 
     // depthNorm from 0 (back) to 1 (front)
     const depthNorm = (r.z + 1) / 2; 

@@ -32,6 +32,10 @@ hasCJKLanguage = true
     name = "Bird"
     pageRef = "/bird"
     weight = 3
+  [[menu.main]]
+    name = "Flux"
+    pageRef = "/flux"
+    weight = 4
 
 [params]
   description = "A Nothing Big Blog"

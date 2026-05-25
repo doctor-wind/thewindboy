@@ -76,9 +76,8 @@
   .flux-stats {
     font-size: 0.8em;
     opacity: 0.5;
-    margin-bottom: 0.5rem;
     font-style: italic;
-    text-align: center;
+    margin-top: 4px;
   }
 
   /* Globe container */
@@ -182,7 +181,10 @@
 </style>
 
 <div class="flux-header">
-  <h1>Flux</h1>
+  <div class="flux-title-group">
+    <h1>Flux</h1>
+    <div class="flux-stats" id="flux-stats"></div>
+  </div>
   <div class="flux-actions">
     <div class="flux-search-wrap">
       <input type="text" class="flux-search" id="flux-search" placeholder="Search feeds..." autocomplete="off" />
@@ -191,7 +193,6 @@
     <button class="flux-export-btn" onclick="exportOPML()">Export as OPML</button>
   </div>
 </div>
-<div class="flux-stats" id="flux-stats"></div>
 <div class="flux-globe-wrap" id="flux-globe-wrap">
   <div class="flux-globe" id="flux-globe"></div>
   <div class="flux-no-results" id="flux-no-results">No matching feeds found</div>

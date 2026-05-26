@@ -107,7 +107,7 @@
     gap: 4px;
     padding: 3px 8px 3px 5px;
     border-radius: 16px;
-    font-size: 7px;
+    font-size: 8px;
     text-decoration: none !important;
     color: #fff !important;
     cursor: pointer;
@@ -528,11 +528,13 @@ function render() {
     const opacity = item.matched ? (0.15 + depthNorm * 0.85) : 0.02;
     const blur = depthNorm > 0.4 ? 0 : (1 - depthNorm) * 2.5;
 
-    // Center the element using its precalculated width/height
+    // Use left/top for positioning (avoids Safari GPU compositing blur)
     const x_final = cx + x2d - item.halfW * scale3d;
     const y_final = cy + y2d - item.halfH * scale3d;
 
-    item.el.style.transform = `translate3d(${x_final}px, ${y_final}px, 0) scale(${scale3d})`;
+    item.el.style.left = x_final + 'px';
+    item.el.style.top = y_final + 'px';
+    item.el.style.transform = `scale(${scale3d})`;
     item.el.style.zIndex = Math.round(depthNorm * 1000);
     item.el.style.opacity = opacity;
     item.el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';

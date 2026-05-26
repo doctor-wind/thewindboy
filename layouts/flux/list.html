@@ -104,10 +104,10 @@
     position: absolute;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 3px 8px 3px 5px;
-    border-radius: 16px;
-    font-size: 8px;
+    gap: 8px;
+    padding: 6px 16px 6px 10px;
+    border-radius: 32px;
+    font-size: 16px; /* Render at 2x to fix Safari blur */
     text-decoration: none !important;
     color: #fff !important;
     cursor: pointer;
@@ -122,14 +122,14 @@
     text-decoration: none !important;
   }
   .flux-tag img {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
     flex-shrink: 0;
     background: rgba(255,255,255,0.25);
   }
   .flux-tag .flux-name {
-    max-width: 140px;
+    max-width: 280px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -528,13 +528,14 @@ function render() {
     const opacity = item.matched ? (0.15 + depthNorm * 0.85) : 0.02;
     const blur = depthNorm > 0.4 ? 0 : (1 - depthNorm) * 2.5;
 
-    // Use left/top for positioning (avoids Safari GPU compositing blur)
-    const x_final = cx + x2d - item.halfW * scale3d;
-    const y_final = cy + y2d - item.halfH * scale3d;
+    // Use scale down technique for sharp text on Safari (CSS sizes are 2x)
+    const adjustedScale = scale3d * 0.5;
 
-    item.el.style.left = x_final + 'px';
-    item.el.style.top = y_final + 'px';
-    item.el.style.transform = `scale(${scale3d})`;
+    // Center the element using its precalculated width/height
+    const x_final = cx + x2d - item.halfW * adjustedScale;
+    const y_final = cy + y2d - item.halfH * adjustedScale;
+
+    item.el.style.transform = `translate3d(${x_final}px, ${y_final}px, 0) scale(${adjustedScale})`;
     item.el.style.zIndex = Math.round(depthNorm * 1000);
     item.el.style.opacity = opacity;
     item.el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';

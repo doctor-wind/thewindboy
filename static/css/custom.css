@@ -12,6 +12,8 @@
 /* Body base adjustments */
 body {
     letter-spacing: 0.03em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Sticky Header */

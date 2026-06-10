@@ -14,7 +14,7 @@
       position: absolute;
       bottom: 100%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(6px);
       margin-bottom: 10px;
       background-color: #fff;
       color: #333;
@@ -23,10 +23,13 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       width: 250px;
       z-index: 1000;
-      transition: opacity 0.2s, visibility 0.2s;
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: left;
       font-style: normal;
       border: 1px solid #eaeaea;
+      pointer-events: none;
     }
     .rss-tooltip::after {
       content: "";
@@ -41,6 +44,8 @@
     .rss-container:hover .rss-tooltip {
       visibility: visible;
       opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
     }
     .rss-tooltip-title {
       font-weight: bold;

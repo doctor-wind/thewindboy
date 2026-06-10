@@ -44,11 +44,11 @@
     }
     .rss-tooltip-title {
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
       margin-bottom: 6px;
     }
     .rss-tooltip-desc {
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.4;
       color: #666;
       margin-bottom: 10px;
@@ -62,7 +62,7 @@
       border: none;
       padding: 6px 0;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 11px;
       cursor: pointer;
       text-align: center;
       transition: background-color 0.2s;
@@ -70,27 +70,7 @@
     .rss-tooltip-btn:hover {
       background-color: #555;
     }
-    .rss-toast {
-      visibility: hidden;
-      min-width: 200px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 4px;
-      padding: 10px 15px;
-      position: fixed;
-      z-index: 2000;
-      left: 50%;
-      bottom: 30px;
-      transform: translateX(-50%);
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-    .rss-toast.show {
-      visibility: visible;
-      opacity: 1;
-    }
+
 
     @media (prefers-color-scheme: dark) {
       .rss-tooltip {
@@ -115,10 +95,7 @@
       .rss-tooltip-btn:hover {
         opacity: 0.8;
       }
-      .rss-toast {
-        background-color: var(--heading-color, #eee);
-        color: var(--background-color, #111);
-      }
+
     }
 
     .footer-content {
@@ -199,7 +176,7 @@
         <div class="rss-tooltip">
           <div class="rss-tooltip-title">订阅 RSS</div>
           <div class="rss-tooltip-desc">点击复制链接到你喜欢的 RSS 阅读器（如 Reeder、Feedly、Inoreader、NetNewsWire 等）即可订阅更新。</div>
-          <button class="rss-tooltip-btn" onclick="copyRSSLink(event)">[复制链接]</button>
+          <button class="rss-tooltip-btn" onclick="copyRSSLink(event)">复制链接</button>
         </div>
       </div>
     </div>
@@ -213,8 +190,6 @@
     </div>
   </div>
 
-  <div id="rss-toast" class="rss-toast">RSS 订阅链接已复制</div>
-
   <script>
     function copyRSSLink(event) {
       event.preventDefault();
@@ -227,14 +202,6 @@
       navigator.clipboard.writeText(rssUrl).then(() => {
         const tooltip = document.querySelector('.rss-tooltip');
         if (tooltip) tooltip.style.display = 'none';
-        
-        const toast = document.getElementById('rss-toast');
-        if (toast) {
-          toast.classList.add('show');
-          setTimeout(() => {
-            toast.classList.remove('show');
-          }, 3000);
-        }
         
         const container = document.querySelector('.rss-container');
         if (container) {

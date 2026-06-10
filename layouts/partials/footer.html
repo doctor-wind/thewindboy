@@ -4,6 +4,123 @@
   <hr style="margin-bottom: 1.2rem; border: 0; border-top: 1px dashed #ccc;">
   
   <style>
+    .rss-container {
+      position: relative;
+      display: inline-block;
+    }
+    .rss-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 10px;
+      background-color: #fff;
+      color: #333;
+      padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 250px;
+      z-index: 1000;
+      transition: opacity 0.2s, visibility 0.2s;
+      text-align: left;
+      font-style: normal;
+      border: 1px solid #eaeaea;
+    }
+    .rss-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #fff transparent transparent transparent;
+    }
+    .rss-container:hover .rss-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    .rss-tooltip-title {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .rss-tooltip-desc {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #666;
+      margin-bottom: 10px;
+      white-space: normal;
+    }
+    .rss-tooltip-btn {
+      display: block;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 6px 0;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    .rss-tooltip-btn:hover {
+      background-color: #555;
+    }
+    .rss-toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 10px 15px;
+      position: fixed;
+      z-index: 2000;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .rss-toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .rss-tooltip {
+        background-color: var(--background-color, #1a1a1a);
+        color: var(--text-color, #eee);
+        border-color: #444;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      }
+      .rss-tooltip::after {
+        border-color: var(--background-color, #1a1a1a) transparent transparent transparent;
+      }
+      .rss-tooltip-title {
+        color: var(--heading-color, #fff);
+      }
+      .rss-tooltip-desc {
+        color: var(--text-color, #ccc);
+      }
+      .rss-tooltip-btn {
+        background-color: var(--heading-color, #eee);
+        color: var(--background-color, #111);
+      }
+      .rss-tooltip-btn:hover {
+        opacity: 0.8;
+      }
+      .rss-toast {
+        background-color: var(--heading-color, #eee);
+        color: var(--background-color, #111);
+      }
+    }
+
     .footer-content {
       display: flex;
       justify-content: space-between;
@@ -74,10 +191,17 @@
         <span style="display: inline-block; transform: skewX(-12deg);">拾花后花园</span>
       </a>
       <span class="social-sep">/</span>
-      <a href="{{ "index.xml" | relURL }}" target="_blank">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
-        RSS
-      </a>
+      <div class="rss-container">
+        <a href="{{ "index.xml" | relURL }}" target="_blank" class="rss-link">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+          RSS
+        </a>
+        <div class="rss-tooltip">
+          <div class="rss-tooltip-title">订阅 RSS</div>
+          <div class="rss-tooltip-desc">点击复制链接到你喜欢的 RSS 阅读器（如 Reeder、Feedly、Inoreader、NetNewsWire 等）即可订阅更新。</div>
+          <button class="rss-tooltip-btn" onclick="copyRSSLink(event)">[复制链接]</button>
+        </div>
+      </div>
     </div>
 
     <div class="footer-item footer-right">
@@ -88,4 +212,39 @@
       {{- end -}}
     </div>
   </div>
+
+  <div id="rss-toast" class="rss-toast">RSS 订阅链接已复制</div>
+
+  <script>
+    function copyRSSLink(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      const rssLink = document.querySelector('.rss-link');
+      if (!rssLink) return;
+      const rssUrl = rssLink.href;
+      
+      navigator.clipboard.writeText(rssUrl).then(() => {
+        const tooltip = document.querySelector('.rss-tooltip');
+        if (tooltip) tooltip.style.display = 'none';
+        
+        const toast = document.getElementById('rss-toast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3000);
+        }
+        
+        const container = document.querySelector('.rss-container');
+        if (container) {
+          container.addEventListener('mouseleave', () => {
+            if (tooltip) tooltip.style.display = '';
+          }, { once: true });
+        }
+      }).catch(err => {
+        console.error('Copy failed:', err);
+      });
+    }
+  </script>
 </footer>

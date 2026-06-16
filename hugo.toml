@@ -40,6 +40,7 @@ hasCJKLanguage = true
 [params]
   description = "A Nothing Big Blog"
   author = "Kar Chan"
+  favicon = "favicon.svg"
   customCSS = ["custom.css"]
   mainSections = ["blog"] 
   listSummaries = true

@@ -103,6 +103,90 @@
 
     }
 
+    /* Tree emoji tooltip */
+    .tree-container {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: default;
+    }
+    .tree-emoji {
+      font-size: 1em;
+      margin-right: 2px;
+      transition: transform 0.3s ease;
+    }
+    .tree-container:hover .tree-emoji {
+      transform: scale(1.25);
+    }
+    .tree-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      margin-bottom: 10px;
+      background-color: #fff;
+      color: #333;
+      padding: 14px 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 280px;
+      z-index: 1000;
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      font-style: normal;
+      border: 1px solid #eaeaea;
+      pointer-events: none;
+    }
+    .tree-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #fff transparent transparent transparent;
+    }
+    .tree-container:hover .tree-tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .tree-tooltip-name {
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .tree-tooltip-bio {
+      font-size: 11px;
+      line-height: 1.6;
+      color: #666;
+      white-space: normal;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .tree-tooltip {
+        background-color: var(--background-color, #1a1a1a);
+        color: var(--text-color, #eee);
+        border-color: #444;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      }
+      .tree-tooltip::after {
+        border-color: var(--background-color, #1a1a1a) transparent transparent transparent;
+      }
+      .tree-tooltip-name {
+        color: var(--heading-color, #fff);
+      }
+      .tree-tooltip-bio {
+        color: var(--text-color, #ccc);
+      }
+    }
+
     .footer-content {
       display: flex;
       justify-content: space-between;
@@ -190,7 +274,7 @@
       <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" style="display: inline-flex; align-items: center; gap: 4px; color: inherit; text-decoration: none;"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-nd.svg" style="height: 11px; width: auto;" alt="CC BY-NC-ND"><span>承诺非AI创作</span></a>
       <span class="social-sep">·</span>
       {{- if .Site.Params.author -}}
-        <span><a class="footer-author" href="mailto:chan4exper@gmail.com" style="color: inherit; text-decoration: none;">{{ .Site.Params.author }}</a> © {{ now.Format "2006" }}</span>
+        <span><span class="tree-container"><span class="tree-emoji">🌳</span><div class="tree-tooltip"><div class="tree-tooltip-name">Kar Chan</div><div class="tree-tooltip-bio">INTJ 产品经理 。博客「Kar'Blogs」的仓库创建者以及日常打扫清理。业余走走逛逛文字，正在学习做一个合格的父亲。</div></div></span><a class="footer-author" href="mailto:chan4exper@gmail.com" style="color: inherit; text-decoration: none;">{{ .Site.Params.author }}</a> © {{ now.Format "2006" }}</span>
       {{- end -}}
     </div>
   </div>

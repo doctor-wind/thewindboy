@@ -24,7 +24,7 @@ header {
     background-color: var(--background-color);
     padding-top: 20px;
     margin-top: -20px;
-    padding-bottom: 15px;
+    padding-bottom: 8px;
     margin-bottom: 15px;
     border-bottom: 1px dashed rgba(150, 150, 150, 0.3);
 }
@@ -57,9 +57,13 @@ nav a {
 }
 nav a:hover {
     text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 4px;
 }
 nav a.active, nav a[aria-current="page"] {
     text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 4px;
 }
 
 /* Blog list titles */

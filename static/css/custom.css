@@ -54,10 +54,29 @@ footer a:hover {
 nav a {
     font-weight: bold;
     text-decoration: none !important;
-    position: relative;
-    display: inline-block;
 }
-nav a::after {
+nav a:hover {
+    text-decoration: underline !important;
+}
+nav a.active, nav a[aria-current="page"] {
+    text-decoration: underline !important;
+}
+
+/* Blog list titles */
+.blog-posts a {
+    font-size: 1.15em;
+}
+
+/* Post title link with arrow + animated underline */
+.post-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: nowrap;
+    position: relative;
+    text-decoration: none !important;
+}
+.post-link::after {
     content: '';
     position: absolute;
     left: 0;
@@ -67,37 +86,17 @@ nav a::after {
     background-color: currentColor;
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.21s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-nav a:hover {
+.post-link:hover {
     text-decoration: none !important;
 }
-nav a:hover::after {
+.post-link:hover::after {
     transform: scaleX(1);
     transform-origin: left center;
 }
-nav a:not(:hover)::after {
+.post-link:not(:hover)::after {
     transform-origin: right center;
-}
-nav a.active::after, nav a[aria-current="page"]::after {
-    transform: scaleX(1);
-    transform-origin: left center;
-}
-nav a.active:not(:hover)::after, nav a[aria-current="page"]:not(:hover)::after {
-    transform-origin: left center;
-}
-
-/* Blog list titles */
-.blog-posts a {
-    font-size: 1.15em;
-}
-
-/* Post title link with arrow */
-.post-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    flex-wrap: nowrap;
 }
 .post-arrow {
     display: inline-block !important;

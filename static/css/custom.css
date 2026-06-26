@@ -102,7 +102,7 @@ nav a.active, nav a[aria-current="page"] {
     transform-origin: left center;
 }
 .post-link:not(:hover)::after {
-    transform-origin: right center;
+    transform-origin: left center;
 }
 .post-arrow {
     display: inline-block !important;

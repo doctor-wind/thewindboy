@@ -87,11 +87,12 @@ nav a.active, nav a[aria-current="page"] {
     left: 0;
     bottom: -2px;
     width: 100%;
-    height: 1.5px;
+    height: 2px;
     background-color: currentColor;
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.21s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
 .post-link:hover {
     text-decoration: none !important;

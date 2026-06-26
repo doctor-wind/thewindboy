@@ -71,6 +71,7 @@ nav a.active, nav a[aria-current="page"] {
 .post-link {
     display: inline-flex;
     align-items: center;
+    align-self: flex-start;
     gap: 0.5em;
     flex-wrap: nowrap;
     position: relative;

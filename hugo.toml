@@ -45,10 +45,6 @@ hasCJKLanguage = true
   mainSections = ["blog"] 
   listSummaries = true
 
-  [params.twikoo]
-    enable = true
-    envId  = "https://twikoo-comments-gamma.vercel.app"
-
 [services]
   [services.googleAnalytics]
     ID = "G-09506ENLJ2"

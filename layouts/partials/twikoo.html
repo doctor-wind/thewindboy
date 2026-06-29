@@ -1,13 +1,59 @@
 <section class="twikoo-comments" style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #ccc;">
   <style>
-    /* 隐藏 Email 和 Website 输入框 */
+    /* 隐藏不需要的元素 */
     .tk-mail, .tk-link { display: none !important; }
-    /* 隐藏 Markdown 图标和 Preview 按钮 */
     .tk-submit-action-icon { display: none !important; }
-    /* 隐藏刷新图标 */
     .tk-icon.__refresh { display: none !important; }
-    /* 隐藏 Powered by Twikoo */
     .tk-powered-by { display: none !important; }
+
+    /* 整体风格适配博客主题 */
+    .tk-comments { color: var(--text-color); }
+    .tk-avatar { opacity: 0.6; }
+
+    /* 输入框样式 */
+    .tk-input .el-textarea__inner,
+    .tk-input .el-input__inner {
+      background-color: var(--background-color) !important;
+      color: var(--text-color) !important;
+      border-color: rgba(150, 150, 150, 0.3) !important;
+      border-radius: 4px !important;
+    }
+    .tk-input .el-textarea__inner:focus,
+    .tk-input .el-input__inner:focus {
+      border-color: rgba(150, 150, 150, 0.6) !important;
+    }
+
+    /* 昵称标签 */
+    .tk-meta-input .el-input-group__prepend {
+      background-color: transparent !important;
+      border-color: rgba(150, 150, 150, 0.3) !important;
+      color: var(--text-color) !important;
+    }
+
+    /* 发送按钮 */
+    .tk-submit .tk-submit-action-icon + button,
+    .tk-send-btn {
+      background-color: var(--text-color) !important;
+      color: var(--background-color) !important;
+      border: none !important;
+      border-radius: 4px !important;
+    }
+
+    /* 评论内容区 */
+    .tk-content { color: var(--text-color) !important; }
+    .tk-content a { color: var(--text-color) !important; font-style: italic; }
+
+    /* No comment 文字 */
+    .tk-comments-no { color: var(--text-color) !important; opacity: 0.5; }
+
+    /* 加载更多 */
+    .tk-expand { color: var(--text-color) !important; opacity: 0.6; }
+
+    /* 字数统计 */
+    .tk-input .tk-row.actions .tk-count {
+      color: var(--text-color) !important;
+      opacity: 0.5;
+    }
   </style>
   <div id="tcomment"></div>
   <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.42/dist/twikoo.all.min.js"></script>

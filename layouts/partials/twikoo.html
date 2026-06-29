@@ -14,10 +14,15 @@
       display: none !important;
     }
 
-    /* 隐藏刷新按钮（后备 CSS 隐藏） */
-    .tk-icon.__refresh,
-    .tk-action-link,
-    .el-icon-refresh {
+    /* 隐藏刷新按钮（后备 CSS 隐藏，增加优先级） */
+    .twikoo .tk-icon.__refresh,
+    .twikoo .tk-action-link,
+    .twikoo .el-icon-refresh,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-comments-title .tk-action-icon,
+    .twikoo svg[class*="refresh"],
+    .twikoo [title="刷新"],
+    .twikoo [title="Refresh"] {
       display: none !important;
     }
 
@@ -88,15 +93,16 @@
         // 使用 MutationObserver 监听动态渲染的元素
         const observer = new MutationObserver(() => {
           // 1. 去除手动刷新按钮
-          document.querySelectorAll('.tk-icon.__refresh, .el-icon-refresh').forEach(icon => {
-             const btn = icon.closest('.el-button');
+          document.querySelectorAll('.tk-icon.__refresh, .el-icon-refresh, [title="刷新"], [title="Refresh"]').forEach(icon => {
+             const btn = icon.closest('a, button, .el-button');
              if (btn) btn.style.display = 'none';
+             else icon.style.display = 'none';
           });
 
           // 2. 去掉 Nickname btn，改为 placeholder
           const nickInput = document.querySelector('.tk-meta-input .el-input:nth-child(1) input');
-          if (nickInput && nickInput.placeholder !== 'Nickname') {
-            nickInput.placeholder = 'Nickname';
+          if (nickInput && nickInput.placeholder !== 'Your Nickname') {
+            nickInput.placeholder = 'Your Nickname';
           }
 
           // 3. 头像默认取当前的网站图标

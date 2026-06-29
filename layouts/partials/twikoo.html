@@ -14,9 +14,10 @@
       display: none !important;
     }
 
-    /* 隐藏刷新图标 */
+    /* 隐藏刷新按钮（后备 CSS 隐藏） */
     .tk-icon.__refresh,
-    .tk-action-link {
+    .tk-action-link,
+    .el-icon-refresh {
       display: none !important;
     }
 
@@ -24,7 +25,6 @@
     .tk-footer {
       display: none !important;
     }
-
 
     /* 2. 颜色适配博客主题 */
     /* 基础文字颜色 */
@@ -43,26 +43,39 @@
       border-color: rgba(150, 150, 150, 0.6) !important;
     }
 
-    /* 昵称前缀背景透明 */
+    /* 隐藏昵称前缀，用 JS 替换为 placeholder */
     .twikoo .el-input-group__prepend {
-      background-color: transparent !important;
-      border-color: rgba(150, 150, 150, 0.3) !important;
-      color: var(--text-color) !important;
+      display: none !important;
+    }
+    /* 修复隐藏前缀后的圆角 */
+    .twikoo .el-input-group > .el-input__inner {
+      border-top-left-radius: 4px !important;
+      border-bottom-left-radius: 4px !important;
     }
 
-    /* Send 发送按钮适配主题色 (深色按钮白字，跟随博客) */
+    /* Send 发送按钮适配主题色 */
     .twikoo .el-button--primary {
       background-color: var(--text-color) !important;
       border-color: var(--text-color) !important;
       color: var(--background-color) !important;
       border-radius: 4px !important;
-      width: 100%; /* 因为前面按钮隐藏了，这里把发送按钮拉宽一点更美观 */
+      width: 100%; 
       max-width: 120px;
       margin-left: auto !important;
       display: block;
     }
     .twikoo .el-button--primary.is-disabled {
       opacity: 0.5;
+    }
+
+    /* 隐藏 Load more 按钮（视觉隐藏，保留用于自动加载） */
+    .tk-expand {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
   </style>
   <div id="tcomment"></div>
@@ -71,6 +84,54 @@
     twikoo.init({
       envId: '{{ site.Params.twikoo.envId }}',
       el: '#tcomment',
+      onCommentLoaded: function () {
+        // 使用 MutationObserver 监听动态渲染的元素
+        const observer = new MutationObserver(() => {
+          // 1. 去除手动刷新按钮
+          document.querySelectorAll('.tk-icon.__refresh, .el-icon-refresh').forEach(icon => {
+             const btn = icon.closest('.el-button');
+             if (btn) btn.style.display = 'none';
+          });
+
+          // 2. 去掉 Nickname btn，改为 placeholder
+          const nickInput = document.querySelector('.tk-meta-input .el-input:nth-child(1) input');
+          if (nickInput && nickInput.placeholder !== 'Nickname') {
+            nickInput.placeholder = 'Nickname';
+          }
+
+          // 3. 头像默认取当前的网站图标
+          document.querySelectorAll('.tk-avatar-img').forEach(img => {
+            // 识别 Twikoo 默认的 Gravatar 头像 (通常包含 d=mp 或 d41d...)
+            if (img.src.includes('d=mp') || img.src.includes('d41d8cd98f00b204e9800998ecf8427e') || img.src.includes('gravatar.com')) {
+              if (!img.src.includes('favicon.svg')) {
+                img.src = '{{ "favicon.svg" | absURL }}';
+                img.style.objectFit = 'contain';
+                img.style.padding = '4px';
+                img.style.boxSizing = 'border-box';
+              }
+            }
+          });
+
+          // 4. 用户划动页面自动加载 (Load more)
+          const loadMoreBtn = document.querySelector('.tk-expand');
+          if (loadMoreBtn && loadMoreBtn.style.display !== 'none') {
+            if (!window.tkLoadObserver) {
+              window.tkLoadObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                  loadMoreBtn.click();
+                }
+              });
+            }
+            window.tkLoadObserver.observe(loadMoreBtn);
+          }
+        });
+
+        const targetNode = document.getElementById('tcomment');
+        if (targetNode) {
+          // 监听子节点变化，确保新加载的评论也能被处理
+          observer.observe(targetNode, { childList: true, subtree: true });
+        }
+      }
     });
   </script>
 </section>

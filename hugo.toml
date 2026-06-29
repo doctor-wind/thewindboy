@@ -45,14 +45,9 @@ hasCJKLanguage = true
   mainSections = ["blog"] 
   listSummaries = true
 
-  [params.giscus]
+  [params.twikoo]
     enable = true
-    repo    = "thekarchan/thewindboy"
-    repoid  = "R_kgDORL52rw"
-    category = "General"
-    categoryid = ""
-    mapping = "pathname"
-    theme   = "light"
+    envId  = "https://twikoo-comments-gamma.vercel.app"
 
 [services]
   [services.googleAnalytics]

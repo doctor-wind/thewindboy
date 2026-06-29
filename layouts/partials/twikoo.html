@@ -1,0 +1,10 @@
+<section class="twikoo-comments" style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #ccc;">
+  <div id="tcomment"></div>
+  <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.42/dist/twikoo.all.min.js"></script>
+  <script>
+    twikoo.init({
+      envId: '{{ site.Params.twikoo.envId }}',
+      el: '#tcomment',
+    });
+  </script>
+</section>

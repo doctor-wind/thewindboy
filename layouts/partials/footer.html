@@ -111,12 +111,15 @@
       cursor: default;
     }
     .tree-emoji {
+      display: inline-block;
       font-size: 1em;
       margin-right: 2px;
       transition: transform 0.3s ease;
+      will-change: transform;
     }
     .tree-container:hover .tree-emoji {
-      transform: scale(1.25);
+      transform: scale(1.15);
+      transform-origin: center center;
     }
     .tree-tooltip {
       visibility: hidden;

@@ -52,15 +52,18 @@
   {{ end }}
 {{ end }}
 
-<div class="post-navigation" style="margin-top: 3rem; display: flex; justify-content: space-between; border-top: 1px dashed #ccc; padding-top: 1.5rem; padding-bottom: 0.5rem; margin-bottom: -2rem;">
-  <div style="flex: 1; padding-left: 2em; padding-right: 1rem;">
+<style>
+  footer hr { display: none !important; }
+</style>
+<div class="post-navigation" style="margin-top: 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; padding-top: 1.5rem; padding-bottom: 1.5rem; margin-bottom: 0;">
+  <div style="flex: 1; padding: 0; margin: 0; padding-left: 2em; padding-right: 1rem; display: flex; align-items: center;">
     {{ if $next }}
-      <a href="{{ $next.Permalink }}" style="text-decoration: none !important;">← {{ $next.Title }}</a>
+      <a href="{{ $next.Permalink }}" style="text-decoration: none !important; margin: 0; padding: 0; display: block; line-height: 1;">← {{ $next.Title }}</a>
     {{ end }}
   </div>
-  <div style="flex: 1; text-align: right; padding-right: 2em; padding-left: 1rem;">
+  <div style="flex: 1; padding: 0; margin: 0; padding-right: 2em; padding-left: 1rem; display: flex; align-items: center; justify-content: flex-end;">
     {{ if $prev }}
-      <a href="{{ $prev.Permalink }}" style="text-decoration: none !important;">{{ $prev.Title }} →</a>
+      <a href="{{ $prev.Permalink }}" style="text-decoration: none !important; margin: 0; padding: 0; display: block; line-height: 1;">{{ $prev.Title }} →</a>
     {{ end }}
   </div>
 </div>

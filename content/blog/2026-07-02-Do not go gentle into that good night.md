@@ -11,7 +11,7 @@ tags = ["日常"]
 
 
 ### Do not go gentle into that good night
-* Dylan Thomas (1951) *
+*Dylan Thomas (1951)*  
 
 Do not go gentle into that good night, Old age should burn and rave at close of day; Rage, rage against the dying of the light.  
 
@@ -32,7 +32,7 @@ And you, my father, there on the sad height, Curse, bless, me now with your fier
 
 **译文**
 ### 不要温和地走进那个良夜
-* 狄兰·托马斯 （1951）*
+*狄兰·托马斯 （1951）*  
 
 不要温和地走进那个良夜， 白昼将尽，暮年仍应燃烧咆哮； 怒斥，怒斥光明的消逝。  
 

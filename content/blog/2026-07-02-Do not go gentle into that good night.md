@@ -13,17 +13,17 @@ tags = ["日常"]
 ### Do not go gentle into that good night
 * Dylan Thomas (1951) *
 
-Do not go gentle into that good night, Old age should burn and rave at close of day; Rage, rage against the dying of the light.
+Do not go gentle into that good night, Old age should burn and rave at close of day; Rage, rage against the dying of the light.  
 
-Though wise men at their end know dark is right, Because their words had forked no lightning they Do not go gentle into that good night.
+Though wise men at their end know dark is right, Because their words had forked no lightning they Do not go gentle into that good night.  
 
-Good men, the last wave by, crying how bright Their frail deeds might have danced in a green bay, Rage, rage against the dying of the light.
+Good men, the last wave by, crying how bright Their frail deeds might have danced in a green bay, Rage, rage against the dying of the light.  
 
-Wild men who caught and sang the sun in flight, And learn, too late, they grieved it on its way, Do not go gentle into that good night.
+Wild men who caught and sang the sun in flight, And learn, too late, they grieved it on its way, Do not go gentle into that good night.  
 
-Grave men, near death, who see with blinding sight Blind eyes could blaze like meteors and be gay, Rage, rage against the dying of the light.
+Grave men, near death, who see with blinding sight Blind eyes could blaze like meteors and be gay, Rage, rage against the dying of the light.  
 
-And you, my father, there on the sad height, Curse, bless, me now with your fierce tears, I pray. Do not go gentle into that good night. Rage, rage against the dying of the light.
+And you, my father, there on the sad height, Curse, bless, me now with your fierce tears, I pray. Do not go gentle into that good night. Rage, rage against the dying of the light.  
 
 
 
@@ -32,16 +32,16 @@ And you, my father, there on the sad height, Curse, bless, me now with your fier
 
 **译文**
 ### 不要温和地走进那个良夜
-*狄兰·托马斯 （1951）*
+* 狄兰·托马斯 （1951）*
 
-不要温和地走进那个良夜， 白昼将尽，暮年仍应燃烧咆哮； 怒斥，怒斥光明的消逝。
+不要温和地走进那个良夜， 白昼将尽，暮年仍应燃烧咆哮； 怒斥，怒斥光明的消逝。  
 
-虽然智者临终明白黑暗有理， 因为他们的话语未能引来闪电，他们 并不温和地走进那个良夜。
+虽然智者临终明白黑暗有理， 因为他们的话语未能引来闪电，他们 并不温和地走进那个良夜。  
 
-好人在最后一浪过去，高呼他们脆弱的善行 本可在绿色的海湾跳起多么光辉的舞蹈， 怒斥，怒斥光明的消逝。
+好人在最后一浪过去，高呼他们脆弱的善行 本可在绿色的海湾跳起多么光辉的舞蹈， 怒斥，怒斥光明的消逝。  
 
-狂人抓住并歌唱飞行的太阳， 太迟才学到，他们在阳光途中也曾悲伤， 不要温和地走进那个良夜。
+狂人抓住并歌唱飞行的太阳， 太迟才学到，他们在阳光途中也曾悲伤， 不要温和地走进那个良夜。  
 
-严肃的人，临死前用盲目的视觉看到， 盲眼本可以像流星般闪耀欢欣， 怒斥，怒斥光明的消逝。
+严肃的人，临死前用盲目的视觉看到， 盲眼本可以像流星般闪耀欢欣， 怒斥，怒斥光明的消逝。  
 
-而您，我的父亲，在那悲哀的高处， 现在请用您热切的眼泪咒骂我，祝福我吧，我求您。 不要温和地走进那个良夜。 怒斥，怒斥光明的消逝。
+而您，我的父亲，在那悲哀的高处， 现在请用您热切的眼泪咒骂我，祝福我吧，我求您。 不要温和地走进那个良夜。 怒斥，怒斥光明的消逝。  

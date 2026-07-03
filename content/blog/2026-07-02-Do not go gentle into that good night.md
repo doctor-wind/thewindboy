@@ -26,6 +26,10 @@ Grave men, near death, who see with blinding sight Blind eyes could blaze like m
 And you, my father, there on the sad height, Curse, bless, me now with your fierce tears, I pray. Do not go gentle into that good night. Rage, rage against the dying of the light.
 
 
+
+
+
+
 **译文**
 ### 不要温和地走进那个良夜
 *狄兰·托马斯 （1951）*

@@ -1,4 +1,4 @@
-baseURL      = "https://thekarchan.github.io/thewindboy/"
+baseURL      = "https://hellokar.org/"
 title        = "Kar's Blog"
 theme        = "hugo-bearblog-master"
 languageCode = "en-us"

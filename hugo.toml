@@ -48,3 +48,6 @@ hasCJKLanguage = true
 [services]
   [services.googleAnalytics]
     ID = "G-09506ENLJ2"
+
+[outputFormats.RSS]
+  baseName = "rss"

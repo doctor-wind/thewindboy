@@ -188,11 +188,11 @@ main {
     margin-right: -250px;
     width: 220px;
     font-size: 12px;
-    color: #999;
+    color: #777;
 }
 @media (prefers-color-scheme: dark) {
     .sidenote-content {
-        color: #777;
+        color: #999;
     }
 }
 @media (max-width: 1250px) {

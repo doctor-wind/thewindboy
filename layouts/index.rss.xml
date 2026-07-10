@@ -1,11 +1,13 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>{{ .Site.Title }}</title>
     <link>{{ .Site.BaseURL }}</link>
     <description>{{ .Site.Params.description }}</description>
     <generator>Hugo -- gohugo.io</generator>
+    <docs>https://www.rssboard.org/rss-specification</docs>
     {{ with .Site.LanguageCode }}<language>{{.}}</language>{{end}}
+    <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
     {{- with .OutputFormats.Get "RSS" -}}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
@@ -15,7 +17,8 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       <guid>{{ .Permalink }}</guid>
-      <description>{{ (printf "%s<br><br><div style=\"text-align: right;\"><a href=\"%s\" style=\"text-decoration: underline;\">看完了，进来坐坐？</a></div>" .Content .Permalink) | html }}</description>
+      <description>{{ .Summary | plainify | htmlEscape }}</description>
+      {{ printf `<content:encoded><![CDATA[%s<br><br><div style="text-align: right;"><a href="%s" style="text-decoration: underline;">看完了，进来坐坐？</a></div>]]></content:encoded>` .Content .Permalink | safeHTML }}
     </item>
     {{ end }}
   </channel>

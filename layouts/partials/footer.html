@@ -41,11 +41,11 @@
       border-style: solid;
       border-color: #fff transparent transparent transparent;
     }
-    .rss-container:hover .rss-tooltip {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-      pointer-events: auto;
+    .rss-tooltip-visible {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: translateX(-50%) translateY(0) !important;
+      pointer-events: auto !important;
     }
     .rss-tooltip-title {
       font-weight: bold;
@@ -283,6 +283,26 @@
   </div>
 
   <script>
+    (function() {
+      const container = document.querySelector('.rss-container');
+      const tooltip = document.querySelector('.rss-tooltip');
+      if (!container || !tooltip) return;
+
+      let hideTimer = null;
+
+      container.addEventListener('mouseenter', function() {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        tooltip.classList.add('rss-tooltip-visible');
+      });
+
+      container.addEventListener('mouseleave', function() {
+        hideTimer = setTimeout(function() {
+          tooltip.classList.remove('rss-tooltip-visible');
+          hideTimer = null;
+        }, 300);
+      });
+    })();
+
     function copyRSSLink(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -293,8 +313,9 @@
       
       navigator.clipboard.writeText(rssUrl).then(() => {
         const tooltip = document.querySelector('.rss-tooltip');
-        if (tooltip) tooltip.style.display = 'none';
-        
+        if (tooltip) {
+          tooltip.classList.remove('rss-tooltip-visible');
+        }
         const container = document.querySelector('.rss-container');
         if (container) {
           container.addEventListener('mouseleave', () => {

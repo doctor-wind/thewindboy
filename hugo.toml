@@ -16,8 +16,11 @@ hasCJKLanguage = true
 
 
 [permalinks]
-  posts = "/posts/:contentbasename/"
   blog = "/blog/:contentbasename/"
+
+[sitemap]
+  changeFreq = "weekly"
+  priority = 0.5
 
 [menu]
   [[menu.main]]

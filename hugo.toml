@@ -5,6 +5,10 @@ languageCode = "en-us"
 defaultContentLanguage = "en"
 enableRobotsTXT = true
 hasCJKLanguage = true
+enableGitInfo = true
+
+[frontmatter]
+  lastmod = [":git", "lastmod", "date", "publishDate"]
 
 [pagination]
   pagerSize = 10

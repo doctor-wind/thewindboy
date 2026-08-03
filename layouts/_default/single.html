@@ -16,7 +16,7 @@
 
 <p class="tags" style="margin-top: 2rem;">
   {{ range (.GetTerms "tags") }}
-  <span style="margin-right: 8px;">{{ .LinkTitle }}</span>
+  <a href="{{ .Permalink }}" style="margin-right: 8px;">#{{ .LinkTitle }}</a>
   {{ end }}
 </p>
 

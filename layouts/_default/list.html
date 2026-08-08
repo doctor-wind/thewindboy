@@ -42,7 +42,7 @@
   <small>
     <div class="tags" style="margin-top: 2rem;">
       {{ range .Site.Taxonomies.tags }}
-      <a href="{{ .Page.Permalink }}" style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">#{{ .Page.Title }}</a>
+      <a href="{{ .Page.Permalink }}" style="margin-right: 8px; margin-bottom: 8px; display: inline-block;">{{ .Page.Title }}</a>
       {{ end }}
     </div>
   </small>

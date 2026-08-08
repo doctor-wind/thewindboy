@@ -133,18 +133,24 @@ content a:hover {
 }
 
 /* Tags styles */
-.tags span {
+.tags a, .tags span {
     display: inline-block;
     padding: 2px 8px;
     border-radius: 4px;
     background-color: #f0f0f0;
-    color: #333;
+    color: #333 !important;
     font-size: 0.85em;
+    text-decoration: none !important;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+.tags a:hover {
+    text-decoration: none !important;
+    opacity: 0.8;
 }
 @media (prefers-color-scheme: dark) {
-    .tags span {
+    .tags a, .tags span {
         background-color: #555;
-        color: #eee;
+        color: #eee !important;
     }
 }
 

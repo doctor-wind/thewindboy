@@ -52,3 +52,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore sitemap cache
+        uses: actions/cache@v4
+        with:
+          path: .sitemap-previous.xml
+          key: sitemap-cache-${{ github.sha }}
+          restore-keys: |
+            sitemap-cache-
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Notify search engines
+        run: bash scripts/notify-search-engines.sh "https://hellokar.org"
+

@@ -19,7 +19,8 @@ body {
     letter-spacing: 0.03em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* NOTE: No overflow-x: hidden here — it would clip right-margin sidenotes
+       that float outside the body box. html-level hidden is sufficient for iOS. */
 }
 
 /* Sticky Header */
@@ -221,11 +222,13 @@ main {
 
 /* iOS / Mobile responsive fixes */
 @media (max-width: 640px) {
-    /* Hard-clamp body to viewport width on mobile */
+    /* Hard-clamp body to viewport width on mobile, prevent scroll.
+       Safe here because sidenotes collapse to inline at this breakpoint. */
     body {
         max-width: 100vw !important;
         padding-left: 1rem;
         padding-right: 1rem;
+        overflow-x: hidden;
     }
 
     /* Prevent any full-width image from overflowing on mobile */

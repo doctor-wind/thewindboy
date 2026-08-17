@@ -224,6 +224,13 @@ main {
 
 /* iOS / Mobile responsive fixes */
 @media (max-width: 640px) {
+    /* Hard-clamp body to viewport width on mobile */
+    body {
+        max-width: 100vw !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     /* Prevent any full-width image from overflowing on mobile */
     .img-full img {
         width: 100% !important;
@@ -233,5 +240,45 @@ main {
     /* Prevent pre/code blocks from causing horizontal scroll */
     pre {
         max-width: 100%;
+    }
+
+    /* Post list: stack date above title on mobile (theme post-entry) */
+    .post-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    .line-date {
+        min-width: unset;
+        max-width: unset;
+        text-align: left;
+        padding-right: 0;
+        font-size: 0.8em;
+        opacity: 0.6;
+    }
+
+    /* Custom post list (post_list.html): ensure li stacks vertically */
+    ul.blog-posts li {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    ul.blog-posts li > span {
+        font-size: 0.8em;
+        opacity: 0.6;
+    }
+
+    /* Allow post title links to wrap */
+    .post-link {
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    /* Allow summary text to wrap properly */
+    ul.blog-posts li > div > span {
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 }

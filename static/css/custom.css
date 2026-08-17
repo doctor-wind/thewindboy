@@ -9,11 +9,20 @@
   }
 }
 
+/* Prevent horizontal overflow / blank-area scroll on iOS */
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 /* Body base adjustments */
 body {
     letter-spacing: 0.03em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Sticky Header */
@@ -210,5 +219,19 @@ main {
         border-left: 2px solid var(--text-color);
         opacity: 0.7;
         padding-left: 10px;
+    }
+}
+
+/* iOS / Mobile responsive fixes */
+@media (max-width: 640px) {
+    /* Prevent any full-width image from overflowing on mobile */
+    .img-full img {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Prevent pre/code blocks from causing horizontal scroll */
+    pre {
+        max-width: 100%;
     }
 }

@@ -12,6 +12,36 @@
 {{ end }}{{ end }}
 <content>
   {{ .Content }}
+  {{- $sidenotes := findRE `(?s)<span class="sidenote-content">.*?</span>` .Content -}}
+  {{- if $sidenotes -}}
+  <div class="footnotes-bottom">
+    <hr class="footnotes-bottom-divider" />
+    <div class="footnotes-bottom-list">
+      {{- range $sidenotes -}}
+        <div class="footnotes-bottom-item">{{ . | safeHTML }}</div>
+      {{- end -}}
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var markers = document.querySelectorAll('content .sidenote-marker');
+      var bottomItems = document.querySelectorAll('.footnotes-bottom-item');
+      if (markers.length > 0 && bottomItems.length > 0) {
+        markers.forEach(function(marker, index) {
+          marker.addEventListener('click', function() {
+            if (window.innerWidth <= 1250 && bottomItems[index]) {
+              bottomItems[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              bottomItems[index].classList.add('footnote-highlight');
+              setTimeout(function() {
+                bottomItems[index].classList.remove('footnote-highlight');
+              }, 1500);
+            }
+          });
+        });
+      }
+    });
+  </script>
+  {{- end -}}
 </content>
 
 <p class="tags" style="margin-top: 2rem;">

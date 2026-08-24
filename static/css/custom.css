@@ -78,6 +78,13 @@ nav a.active, nav a[aria-current="page"] {
     font-size: 1.15em;
 }
 
+/* Ensure inner elements inside blog-posts don't inherit flex: 0 0 130px from theme */
+ul.blog-posts li div,
+ul.blog-posts li div span,
+ul.blog-posts li div div {
+    flex: initial;
+}
+
 /* Post title link with arrow + animated underline */
 .post-link {
     display: inline-flex;
@@ -328,9 +335,16 @@ main {
     }
 
     ul.blog-posts li > span {
+        flex: none !important;
         font-size: 0.8em;
         opacity: 0.55;
-        margin-bottom: 0.1rem;  /* tiny gap: date → title */
+        margin-bottom: 0.15rem;  /* tiny gap: date → title */
+    }
+
+    ul.blog-posts li div,
+    ul.blog-posts li div span,
+    ul.blog-posts li div div {
+        flex: none !important;
     }
 
     /* Allow post title links to wrap */
@@ -340,7 +354,8 @@ main {
     }
 
     /* Allow summary text to wrap properly */
-    ul.blog-posts li > div > span {
+    ul.blog-posts li > div > span,
+    ul.blog-posts li > div > div {
         word-break: break-word;
         overflow-wrap: break-word;
     }

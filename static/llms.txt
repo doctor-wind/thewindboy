@@ -1,0 +1,51 @@
+# Kar's Blog
+
+> A Nothing Big Blog — 个人独立博客，记录日常随笔、产品思考与孩子成长观察（飞鸟集）。承诺全站内容为纯手写创作（Non-AI Content）。
+
+This world is as splendid and colorful as a garden; I wander like an ant, and when I pause from time to time, I leave a note on a leaf.
+这个世界就是花园一样绚烂多彩，我如蚂蚁般逛逛，偶尔停下来的时候，在树叶上做个记录。
+
+- Author: Kar Chan (INTJ 产品学徒 / Product Apprentice)
+- Website: https://hellokar.org/
+- RSS Feed: https://hellokar.org/rss.xml
+- Recent Updates RSS: https://hellokar.org/latest/index.xml
+- License: CC BY-NC-ND 4.0 (承诺非AI创作)
+
+## Main Navigation & Columns
+
+- [Latest](https://hellokar.org/latest/): 近期发布的文章与思考，记录最新生活灵感与动态
+- [Parade](https://hellokar.org/parade/): 日常随笔专栏，记录生活的琐碎、感悟、认知与思考（日常系列）
+- [Bird](https://hellokar.org/bird/): 飞鸟集专栏，专注记录孩子成长过程中的童言趣语、互动与观察
+- [Flux](https://hellokar.org/flux/): 博客与信息源导航中心，收录 100+ 优质独立博客与资讯源，支持 OPML 导出
+
+## Core & Representative Articles
+
+### 日常随笔与认知思考 (Parade & Essays)
+- [自然只是巧合](https://hellokar.org/blog/2026-08-10-自然只是巧合/): 探讨生活中的巧合、秩序与自然规律的思考
+- [电影之外](https://hellokar.org/blog/2026-08-17-电影之外/): 从观影体验延伸至现实生活的体会
+- [理想的界线](https://hellokar.org/blog/2026-07-23-理想的界线/): 关于现实边界与理想追求的探讨
+- [审美干扰镜](https://hellokar.org/blog/2026-07-13-审美干扰镜/): 探讨信息时代下个人审美与外界噪音的关系
+- [AI 比人聪明](https://hellokar.org/blog/2026-04-27-ai比人聪明/): 从日常使用 AI 与生活观察出发，思考人机边界与思维习惯
+- [一种生活状态](https://hellokar.org/blog/2026-05-06-一种生活状态/): 将记录与写作视为生活状态而非任务的体悟
+- [月亮与六便士困境](https://hellokar.org/blog/2026-01-17-月亮与六便士困境/): 探讨现实生存与精神追求之间的平衡与抉择
+- [假如我是一只羊](https://hellokar.org/blog/2026-01-31-假如我是一只羊/): 充满趣味与哲理的自我反思随笔
+- [较劲地活着](https://hellokar.org/blog/2026-01-24-较劲地活着/): 面对生活阻力时的态度与坚持
+- [人海中一叶扁舟](https://hellokar.org/blog/2026-01-04-人海中一叶扁舟/): 记录人生旅途中的孤独与笃定
+
+### 飞鸟集系列 (Bird Series - Parenting & Growth)
+- [飞鸟集：缘起](https://hellokar.org/blog/2026-05-01-飞鸟集缘起/): 飞鸟集专栏的开篇，记录想要为孩子记录日常的初衷
+- [飞鸟集：什么是规则](https://hellokar.org/blog/2026-04-30-飞鸟集什么是规则/): 记录与孩子讨论“规则”的对话与反思
+- [飞鸟集：疑惑](https://hellokar.org/blog/2026-05-09-飞鸟集疑惑/): 孩子视角下的世界与成年人认知困境的碰撞
+- [飞鸟集：尊重](https://hellokar.org/blog/2026-05-18-飞鸟集尊重/): 在日常陪伴中理解与尊重孩子的独立人格
+- [飞鸟集：游泳](https://hellokar.org/blog/2026-07-12-飞鸟集游泳/): 陪伴孩子学游泳过程中的成长观察
+- [飞鸟集：对与错](https://hellokar.org/blog/2026-06-29-飞鸟集对与错/): 关于非黑即白的简单童真与复杂世界的思考
+
+### 好奇心系列 (Curiosity Weekly & Notes)
+- [好奇心系列文章](https://hellokar.org/parade/): 持续数十期的好奇心探索记录，记录每周的阅读、观察、工具与技术思考
+
+## Feeds & Resources
+
+- [RSS Feed (Full)](https://hellokar.org/rss.xml): 全站完整文章 RSS 订阅源
+- [RSS Feed (Latest)](https://hellokar.org/latest/index.xml): 近期更新文章 RSS 订阅源
+- [Flux RSS OPML](https://hellokar.org/flux/): 100+ 优质独立博客与精选资讯源聚合
+- [Sitemap](https://hellokar.org/sitemap.xml): 博客完整站点地图 XML

@@ -47,6 +47,16 @@ enableGitInfo = true
 [params]
   description = "A Nothing Big Blog"
   author = "Kar Chan"
+  authorJobTitle = "产品学徒"
+  authorBio = "INTJ 产品学徒 。博客「Kar's Blog」的仓库创建者以及日常打扫清理。业余走走逛逛文字，正在学习做一个合格的父亲。"
+  authorAvatar = "apple-touch-icon.png"
+  authorSameAs = [
+    "https://github.com/thekarchan",
+    "https://x.com/kar_found",
+    "https://c7.io/@kar",
+    "https://broadcast-17n.pages.dev"
+  ]
+  defaultImage = "apple-touch-icon.png"
   favicon = "favicon.svg"
   customCSS = ["custom.css"]
   mainSections = ["blog"] 

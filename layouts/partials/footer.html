@@ -190,6 +190,66 @@
       }
     }
 
+    /* Author email tooltip */
+    .author-container {
+      position: relative;
+      display: inline-block;
+    }
+    .author-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      margin-bottom: 8px;
+      background-color: #fff;
+      color: #333;
+      padding: 5px 9px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-size: 11px;
+      line-height: 1.4;
+      white-space: nowrap;
+      z-index: 1000;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      font-style: normal;
+      border: 1px solid #eaeaea;
+      pointer-events: none;
+      user-select: none;
+    }
+    .author-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #fff transparent transparent transparent;
+    }
+    .author-container:hover .author-tooltip,
+    .author-tooltip-visible {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: translateX(-50%) translateY(0) !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .author-tooltip {
+        background-color: var(--background-color, #1a1a1a);
+        color: var(--text-color, #eee);
+        border-color: #444;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      }
+      .author-tooltip::after {
+        border-color: var(--background-color, #1a1a1a) transparent transparent transparent;
+      }
+    }
+
     .footer-content {
       display: flex;
       justify-content: space-between;
@@ -277,7 +337,7 @@
       <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" style="display: inline-flex; align-items: center; gap: 4px; color: inherit; text-decoration: none;"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-nd.svg" style="height: 11px; width: auto;" alt="CC BY-NC-ND"><span>承诺非AI创作</span></a>
       <span class="social-sep">·</span>
       {{- if .Site.Params.author -}}
-        <span><span class="tree-container"><span class="tree-emoji">🌳</span><div class="tree-tooltip"><div class="tree-tooltip-name">Kar Chan</div><div class="tree-tooltip-bio">INTJ 产品学徒 。博客「Kar's Blog」的仓库创建者以及日常打扫清理。业余走走逛逛文字，正在学习做一个合格的父亲。</div></div></span><a class="footer-author" href="mailto:chan4exper@gmail.com" style="color: inherit; text-decoration: none;">{{ .Site.Params.author }}</a> © {{ now.Format "2006" }}</span>
+        <span><span class="tree-container"><span class="tree-emoji">🌳</span><div class="tree-tooltip"><div class="tree-tooltip-name">Kar Chan</div><div class="tree-tooltip-bio">INTJ 产品学徒 。博客「Kar's Blog」的仓库创建者以及日常打扫清理。业余走走逛逛文字，正在学习做一个合格的父亲。</div></div></span><span class="author-container"><a class="footer-author" href="mailto:chan4exper@gmail.com" style="color: inherit; text-decoration: none;">{{ .Site.Params.author }}</a><div class="author-tooltip">🎈Send Email</div></span> © {{ now.Format "2006" }}</span>
       {{- end -}}
     </div>
   </div>
@@ -300,6 +360,26 @@
           tooltip.classList.remove('rss-tooltip-visible');
           hideTimer = null;
         }, 300);
+      });
+    })();
+
+    (function() {
+      const container = document.querySelector('.author-container');
+      const tooltip = document.querySelector('.author-tooltip');
+      if (!container || !tooltip) return;
+
+      let hideTimer = null;
+
+      container.addEventListener('mouseenter', function() {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+        tooltip.classList.add('author-tooltip-visible');
+      });
+
+      container.addEventListener('mouseleave', function() {
+        hideTimer = setTimeout(function() {
+          tooltip.classList.remove('author-tooltip-visible');
+          hideTimer = null;
+        }, 350);
       });
     })();
 

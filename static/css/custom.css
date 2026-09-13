@@ -286,6 +286,17 @@ main {
     }
 }
 
+/* Tablet & Mobile (iPad / Phone): 优化菜单导航与列表首条数据间距，保持 PC 端不变 */
+@media (max-width: 1024px) {
+    header {
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+    }
+    ul.blog-posts {
+        margin-top: 1.5rem;
+    }
+}
+
 /* iOS / Mobile responsive fixes */
 @media (max-width: 640px) {
     /* Hard-clamp body to viewport width on mobile, prevent scroll.
